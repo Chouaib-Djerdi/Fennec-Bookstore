@@ -1,0 +1,170 @@
+{% extends 'mainapp/navbar.html' %} {% block content2 %}
+
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'mainapp:main-page' %}">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{% url 'mainapp:book-list' %}">Library</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="{% url 'mainapp:book-detail' book.id %}">{{book.title}}</a>
+      </li>
+    </ol>
+  </nav>
+  <div class="row min-vh-100">
+    <div class="col-2 d-flex flex-column justify-content-center">
+      <img
+        src="https://cdn.aseeralkotb.com/storage/media/257203/conversions/%D9%81%D8%AA%D8%A7%D8%A9-%D8%A7%D9%84%D9%8A%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%B2%D8%B1%D9%82%D8%A7%D8%A1-16931-200x300-webp.webp"
+        alt=""
+        class="detail-img"
+      />
+
+      <button type="button" class="btn btn-outline-danger mt-3 mb-2">
+        <span class="mx-2">Add to Cart</span
+        ><i class="fa-sharp fa-solid fa-circle-plus"></i>
+      </button>
+      <button type="button" class="btn btn-outline-danger">
+        <span class="mx-2">Read PDF</span><i class="fa-solid fa-file-pdf"></i>
+      </button>
+    </div>
+
+    <div class="col-8">
+      <div class="d-flex flex-row">
+        <div class="m-1"><h3>{{book.title}}</h3></div>
+        <div class="m-1">
+          <p>
+            <button
+              class="btn btn-light btn-sm"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseExample"
+              aria-expanded="true"
+              aria-controls="collapseExample"
+            >
+              <i class="fa-sharp fa-solid fa-caret-down"></i>
+            </button>
+          </p>
+        </div>
+      </div>
+      <div class="collapse show" id="collapseExample">
+        <div class="card card-body">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          incidunt at neque vel nam, ipsa veritatis mollitia aliquid autem eius
+          ipsum veniam expedita nemo labore quaerat esse dolore asperiores
+          ipsam! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint
+          libero vero quae exercitationem, facere officiis qui sit dolores
+          tempore dolorum ullam corrupti, dolor ratione, aperiam magni eius?
+          Molestiae, blanditiis. Ipsam. libero vero quae exercitationem, facere
+          officiis qui sit dolores tempore dolorum ullam corrupti, dolor
+          ratione, aperiam magni eius? Molestiae, blanditiis. Ipsam.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div class="bdr">
+        <table class="table table-bordered table-light">
+          <tbody>
+            <tr>
+              <td class="table-active">Authors</td>
+              <td>{{book.author.name}}</td>
+            </tr>
+            <tr>
+              <td class="table-active">Genre</td>
+              <td>{{book.genre}}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td class="table-active">Number of pages</td>
+              <td>{{book.nbr_pages}}</td>
+            </tr>
+            <tr>
+              <td class="table-active">Year of publishment</td>
+              <td>{{book.year}}</td>
+            </tr>
+            <tr>
+              <td class="table-active">Publisher</td>
+              <td>{{book.author.publisher}}</td>
+            </tr>
+            <tr>
+              <td class="table-active">Share</td>
+              <td>
+                <a href=""><i class="fa-brands fa-facebook"></i></a
+                ><a href="" class="mx-1"><i class="fa-brands fa-twitter"></i></a
+                ><a href=""><i class="fa-brands fa-instagram"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% comment %} OUT OF THE ROW {% endcomment %}
+
+  <div class="row justify-content-center align-items-end">
+    <button type="button" class="btn btn-danger mx-1">
+      Download <i class="fa-sharp fa-regular fa-circle-down"></i>
+    </button>
+    <button type="button" class="btn btn-danger mx-1">
+      Audio book <i class="fa-solid fa-podcast"></i>
+    </button>
+    <button type="button" class="btn btn-danger mx-1">
+      Add you rating <i class="fa-regular fa-star"></i>
+    </button>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <img
+            class="profile-pic my-auto"
+            {%comment%}
+            src="{{book.author.pfp.url}}"
+            {%endcomment%}
+            alt=""
+          />
+          <a href="{% url 'mainapp:author-detail' book.id %}"
+            ><h5 class="card-title d-inline">{{book.author.name}}</h5></a
+          >
+          <p class="card-text my-2">{{book.author.about}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col2"></div>
+  </div>
+  <h5>You will like</h5>
+  <div class="card-deck row">
+    {% for book in alike_books %}
+
+    <div class="card col-2">
+      <img
+        class="card-img-top"
+        src="https://cdn.aseeralkotb.com/storage/media/257203/conversions/%D9%81%D8%AA%D8%A7%D8%A9-%D8%A7%D9%84%D9%8A%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%B2%D8%B1%D9%82%D8%A7%D8%A1-16931-200x300-webp.webp"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <a href="{% url 'mainapp:book-detail' book.id %}"
+          ><h5 class="card-title">{{book.title}}</h5></a
+        >
+        <a href="{% url 'mainapp:author-detail' book.id %}"
+          ><p class="card-text">{{book.author.name}}</p></a
+        >
+      </div>
+      <div class="card-footer">
+        <p class="card-text d-inline">{{book.price}}</p>
+        <button class="btn btn-success" type="submit">
+          <i class="fa-solid fa-cart-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content2 %}

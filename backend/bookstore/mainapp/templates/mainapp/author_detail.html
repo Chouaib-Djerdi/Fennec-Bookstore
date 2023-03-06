@@ -1,0 +1,49 @@
+{% extends 'mainapp/navbar.html' %} {% block content2 %} {% comment %} Here we
+are passing the author instance not the book instance {% endcomment %}
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'main_app:main-page' %}">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{% url 'main_app:list-books' %}">Library</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="{% url 'main_app:detail-author' author.id %}"
+          >{{author.name}}</a
+        >
+      </li>
+    </ol>
+  </nav>
+</div>
+<div class="container">
+  <div class="jumbotron">
+    <div class="mb-3">
+      <img
+        class="d-inline mr-2"
+        style="width: 200px"
+        src="{{author.pfp.url}}"
+        alt=""
+      />
+      <h1 class="display-4 d-inline align-middle">{{author.name}}</h1>
+    </div>
+
+    <p class="lead">{{author.brief}}</p>
+    <hr class="my-4" />
+    <p>{{author.about}}</p>
+    <div class="row">
+      <p class="lead">
+        {% for book in authorbooks %}
+
+        <a href="{% url 'main_app:detail-book' book.id %}" class="col-2"
+          ><i class="fa-solid fa-book"></i> {{book.title}}</a
+        >
+
+        {% endfor %}
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock content2 %}

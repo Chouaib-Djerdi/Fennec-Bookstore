@@ -1,18 +1,28 @@
 from django.db import models
 from django.core.validators import MaxValueValidator,MinValueValidator
+import os
+
+def get_book_cover_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/book_covers/book_<id>/<filename>
+    return os.path.join('book_covers', 'book_{0}'.format(instance.id), filename)
+
+def get_author_photo_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/author_photos/author_<id>/<filename>
+    return os.path.join('author_photos', 'author_{0}'.format(instance.id), filename)
+
 
 # Create your models here.
 
 class Publisher(models.Model):
     brand_name = models.CharField(max_length=70)
-    img_cap = models.ImageField(upload_to='cover',null=True)
+    img_cap = models.ImageField(upload_to='cover',null=True,blank=True)
 
     def __str__(self):
         return self.brand_name
 
 class Author(models.Model):
     name = models.CharField(max_length=70)
-    pfp = models.ImageField(upload_to='pfp',null=True)
+    pfp = models.ImageField(upload_to=get_author_photo_path,null=True,blank=True)
     brief = models.TextField(max_length=200,null=True)
     about = models.TextField(max_length=500)
     rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
@@ -35,7 +45,7 @@ class Book(models.Model):
     )
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=700)
-    cover = models.ImageField(upload_to='cover',null=True)
+    cover = models.ImageField(upload_to=get_book_cover_path,null=True,blank=True)
     genre = models.CharField(max_length=20,choices=GENRE_CHOICES,null=True)
     year = models.IntegerField()
     nbr_pages = models.IntegerField()

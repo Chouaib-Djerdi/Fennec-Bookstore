@@ -1,0 +1,67 @@
+{% extends 'mainapp/navbar.html' %} {% block content2 %}
+<div class="container-fluid">
+  <div class="row">
+    {% for book in page_obj %}
+    <div class="col-2">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="https://cdn.aseeralkotb.com/storage/media/257203/conversions/%D9%81%D8%AA%D8%A7%D8%A9-%D8%A7%D9%84%D9%8A%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%B2%D8%B1%D9%82%D8%A7%D8%A1-16931-200x300-webp.webp"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <a href="{% url 'mainapp:book-detail' book.id %}"
+            ><h5 class="card-title">{{book.title}}</h5></a
+          >
+          <a href="{% url 'mainapp:author-detail' book.id %}"
+            ><p class="card-text">{{book.author.name}}</p></a
+          >
+        </div>
+        <div class="card-footer">
+          <p class="card-text d-inline">{{book.price}}</p>
+          <button class="btn btn-success" type="submit">
+            <i class="fa-solid fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+
+      <li class="page-item"><a href="?page=1" class="page-link">First</a></li>
+      <li class="page-item">
+        <a href="?page={{page_obj.previous_page_number}}" class="page-link"
+          >&laquo Previous</a
+        >
+      </li>
+
+      {% endif %} {% for i in nbr %}
+
+      <li class="page-item">
+        <a href="?page={{forloop.counter}}" class="page-link"
+          >{{forloop.counter}}</a
+        >
+      </li>
+
+      {% endfor %} {% if page_obj.has_next %}
+
+      <li class="page-item">
+        <a href="?page={{page_obj.next_page_number}}" class="page-link"
+          >Next &raquo</a
+        >
+      </li>
+      <li class="page-item">
+        <a href="?page={{page_obj.paginator.num_pages}}" class="page-link"
+          >Last</a
+        >
+      </li>
+
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% endblock content2 %}
