@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator,MinValueValidator
 import os
+from django.contrib.auth.models import User
 
 def get_book_cover_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/book_covers/book_<id>/<filename>
@@ -26,7 +27,7 @@ class Author(models.Model):
     brief = models.TextField(max_length=200,null=True)
     about = models.TextField(max_length=500)
     rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
-    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    publisher = models.ForeignKey(Publisher, on_delete=models.SET_NULL,null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -51,7 +52,15 @@ class Book(models.Model):
     nbr_pages = models.IntegerField()
     price = models.DecimalField(max_digits=15,decimal_places=2,default=00.00)
     rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL,null=True, blank=True)
 
     def __str__(self):
         return self.title
+    
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
+    products = models.ManyToManyField(Book)
+    
+    def __str__(self):
+        return self.user.username + "'s wishlist"

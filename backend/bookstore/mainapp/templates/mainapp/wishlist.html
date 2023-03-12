@@ -1,0 +1,19 @@
+{% extends 'mainapp/navbar.html' %} {% block content2 %} {% if wishlist_items %}
+<ul>
+  {% for item in wishlist_items %}
+
+  <li>
+    {{item}} <br />
+    <form method="POST" action="{% url 'mainapp:wishlist-remove' item.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Remove from wishlist</button>
+    </form>
+  </li>
+
+  {% endfor %}
+</ul>
+{% else %}
+
+<h1>Your Wishlist is empty</h1>
+
+{% endif %} {% endblock content2 %}

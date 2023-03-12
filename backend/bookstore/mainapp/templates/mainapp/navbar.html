@@ -29,7 +29,7 @@
           >
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#">Category</a>
         </li>
         <li class="nav-item dropdown active">
           <a
@@ -41,17 +41,44 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Dropdown
+            Account
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="{% url 'accounts:login' %}"
+              >Log In</a
+            >
+
+            <a class="dropdown-item" href="{% url 'accounts:logout' %}"
+              >Log Out</a
+            >
+
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="{% url 'accounts:register' %}"
+              >Register</a
+            >
           </div>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Disabled</a>
+
+        <li class="nav-item dropdown active">
+          <a
+            class="nav-link"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fa-regular fa-circle-user profile"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="">Profile</a>
+
+            <a class="dropdown-item" href="{% url 'mainapp:wishlist' %}">Wishlist</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="">Cart</a>
+          </div>
         </li>
       </ul>
       <form

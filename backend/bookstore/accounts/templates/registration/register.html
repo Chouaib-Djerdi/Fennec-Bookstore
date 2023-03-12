@@ -1,0 +1,8 @@
+{% extends 'mainapp/navbar.html' %} {% block content2 %}
+
+<form method="POST">
+  {% csrf_token %} {{form.as_p}}
+  <button type="submit">Register</button>
+</form>
+
+{% endblock content2 %}

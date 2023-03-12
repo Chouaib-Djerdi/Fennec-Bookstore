@@ -59,6 +59,9 @@
         <button class="btn btn-success" type="submit">
           <i class="fa-solid fa-cart-plus"></i>
         </button>
+        <a href="{% url 'mainapp:wishlist-add' book.id %}" class="btn btn-success" type="submit">
+          Add to Wishlist
+        </a>
       </div>
     </div>
 

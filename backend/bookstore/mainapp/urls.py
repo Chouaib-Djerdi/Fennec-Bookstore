@@ -9,4 +9,7 @@ urlpatterns = [
     path('author_detail/<int:pk>',views.authordetailpage,name='author-detail'),
     path('book_list/',views.booklistpage,name='book-list'),
     path('search/',views.searchbar,name='searchbar'),
+    path('item/<int:pk>',views.add_to_wishlist,name='wishlist-add'),
+    path('wishlist/',views.wishlist,name='wishlist'),
+    path('item/<int:pk>',views.remove_from_wishlist,name='wishlist-remove'),
 ]

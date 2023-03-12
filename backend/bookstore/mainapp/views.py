@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from . import models
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def mainpage(request):
@@ -36,3 +39,31 @@ def searchbar(request):
         return render(request,'mainapp/searchbar.html',context={'searched':searched,'books':books})
     else:
         return render(request,'mainapp/searchbar.html')
+    
+
+@login_required
+def add_to_wishlist(request,pk):
+    book = get_object_or_404(models.Book, pk=pk)
+    wishlist, created = models.Wishlist.objects.get_or_create(user=request.user)
+    wishlist.products.add(book)
+    return redirect('/wishlist/')
+
+@login_required
+def wishlist(request):
+    wishlist, created = models.Wishlist.objects.get_or_create(user=request.user)
+    wishlist_items = wishlist.products.all()
+
+    context = {
+        'wishlist_items': wishlist_items
+    }
+    return render(request, 'mainapp/wishlist.html', context)
+
+@login_required
+def remove_from_wishlist(request, pk):
+    if request.method == "POST":    
+        # wishlist = models.Wishlist.objects.get(user=request.user)
+        # wishlist.items.delete(item)
+        
+        models.Wishlist.objects.filter(user=request.user,products=models.Book.objects.get(pk=pk)).delete()
+        return redirect('/wishlist/')
+    return redirect('/')
