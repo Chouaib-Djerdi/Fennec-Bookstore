@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from . import models
+
 # Create your views here.
 
 def register(request):

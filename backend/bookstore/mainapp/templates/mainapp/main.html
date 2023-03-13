@@ -59,8 +59,19 @@
         <button class="btn btn-success" type="submit">
           <i class="fa-solid fa-cart-plus"></i>
         </button>
-        <a href="{% url 'mainapp:wishlist-add' book.id %}" class="btn btn-success" type="submit">
+        <a
+          href="{% url 'mainapp:wishlist-add' book.id %}"
+          class="btn btn-info"
+          type="submit"
+        >
           Add to Wishlist
+        </a>
+        <a
+          href="{% url 'mainapp:cart-add' book.id %}"
+          class="btn btn-success"
+          type="submit"
+        >
+          Add to Cart
         </a>
       </div>
     </div>

@@ -45,6 +45,8 @@ def searchbar(request):
 def add_to_wishlist(request,pk):
     book = get_object_or_404(models.Book, pk=pk)
     wishlist, created = models.Wishlist.objects.get_or_create(user=request.user)
+    # if wishlist.products.get(pk=pk):
+
     wishlist.products.add(book)
     return redirect('/wishlist/')
 
@@ -52,9 +54,10 @@ def add_to_wishlist(request,pk):
 def wishlist(request):
     wishlist, created = models.Wishlist.objects.get_or_create(user=request.user)
     wishlist_items = wishlist.products.all()
-
+    # items_nbr = wishlist.products.all().count()
     context = {
-        'wishlist_items': wishlist_items
+        'wishlist_items': wishlist_items,
+        
     }
     return render(request, 'mainapp/wishlist.html', context)
 
@@ -63,7 +66,35 @@ def remove_from_wishlist(request, pk):
     if request.method == "POST":    
         # wishlist = models.Wishlist.objects.get(user=request.user)
         # wishlist.items.delete(item)
-        
-        models.Wishlist.objects.filter(user=request.user,products=models.Book.objects.get(pk=pk)).delete()
+        wishlist = models.Wishlist.objects.get(user=request.user)
+        book = models.Book.objects.get(pk=pk)
+        wishlist.products.remove(book)
+        wishlist.save()
+        # models.Wishlist.objects.filter(user=request.user,products=models.Book.objects.get(pk=pk)).delete()
         return redirect('/wishlist/')
     return redirect('/')
+
+
+@login_required
+def add_to_cart(request,pk):
+    cart, created = models.Order.objects.get_or_create(customer=request.user)
+    book = get_object_or_404(models.Book, pk=pk)
+    order_item, created = models.OrderItem.objects.get_or_create(product=book,order=cart)
+    order_item.save()
+    return redirect('/cart/')
+
+@login_required
+def cart(request):
+    cart, created = models.Order.objects.get_or_create(customer=request.user)
+    cart_items = cart.orderitem_set.all()
+
+    return render(request,'mainapp/cart.html',context={'cart_items':cart_items})
+    
+@login_required
+def remove_from_cart(request, pk):  
+    order = models.Order.objects.get(customer=request.user)
+    book = get_object_or_404(models.Book, pk=pk)
+    orderitem = models.OrderItem.objects.get(product=book,order=order)
+    orderitem.delete()
+    return redirect('/cart/')
+    
