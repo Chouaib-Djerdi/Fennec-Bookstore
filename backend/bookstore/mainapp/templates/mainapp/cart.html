@@ -1,21 +1,29 @@
 {% extends 'mainapp/navbar.html' %} {% block content2 %}
 
-<ul>
-  {% for item in cart_items %}
+<div class="container">
+  {% if cart_items %}
+  <ul>
+    <h3>Cart Items :</h3>
+    <br />
+    {% for item in cart_items %}
 
-  <li>
-    {{item.product.title}}
+    <li>
+      {{item.product.title}}
 
-    <form
-      method="POST"
-      action="{% url 'mainapp:cart-remove' item.product.id %}"
-    >
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">Remove from Cart</button>
-    </form>
-  </li>
+      <form
+        method="POST"
+        action="{% url 'mainapp:cart-remove' item.product.id %}"
+      >
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Remove from Cart</button>
+      </form>
+    </li>
 
-  {% endfor %}
-</ul>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h1>Your cart is empty !!</h1>
 
+  {% endif %}
+</div>
 {% endblock content2 %}

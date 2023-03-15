@@ -1,0 +1,19 @@
+{% extends 'mainapp/navbar.html' %} {% block content2 %} {% load static %}
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      {% for category in categories %}
+
+      <a
+        href="#"
+        class="btn btn-outline-secondary btn-lg btn-block category-link"
+      >
+        {{category}}
+      </a>
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content2 %}

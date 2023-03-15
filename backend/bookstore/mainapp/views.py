@@ -40,6 +40,18 @@ def searchbar(request):
     else:
         return render(request,'mainapp/searchbar.html')
     
+def category(request):
+    categories = []
+    for i in models.Book.GENRE_CHOICES:
+        categories.append(i[0])
+
+    nbr = len(categories)
+    context = {
+        'categories':categories,
+        'nbr':nbr,
+    }
+    return render(request,'mainapp/category.html',context)
+    
 
 @login_required
 def add_to_wishlist(request,pk):
