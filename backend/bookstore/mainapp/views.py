@@ -60,7 +60,7 @@ def add_to_wishlist(request,pk):
     # if wishlist.products.get(pk=pk):
 
     wishlist.products.add(book)
-    return redirect('/wishlist/')
+    return redirect('/')
 
 @login_required
 def wishlist(request):
@@ -93,14 +93,14 @@ def add_to_cart(request,pk):
     book = get_object_or_404(models.Book, pk=pk)
     order_item, created = models.OrderItem.objects.get_or_create(product=book,order=cart)
     order_item.save()
-    return redirect('/cart/')
+    return redirect('/')
 
 @login_required
 def cart(request):
     cart, created = models.Order.objects.get_or_create(customer=request.user)
     cart_items = cart.orderitem_set.all()
 
-    return render(request,'mainapp/cart.html',context={'cart_items':cart_items})
+    return render(request,'mainapp/cart.html',context={'cart_items':cart_items,'cart':cart})
     
 @login_required
 def remove_from_cart(request, pk):  

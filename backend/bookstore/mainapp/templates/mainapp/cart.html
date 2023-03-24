@@ -1,26 +1,72 @@
-{% extends 'mainapp/navbar.html' %} {% block content2 %}
+{% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
 
 <div class="container">
   {% if cart_items %}
-  <ul>
+
+  <ul class="list-group">
     <h3>Cart Items :</h3>
-    <br />
+    <button type="button" class="btn btn-primary my-1">
+      Your Number of items is
+      <span class="badge badge-light">{{cart.get_cart_items}}</span>
+    </button>
+
     {% for item in cart_items %}
 
-    <li>
-      {{item.product.title}}
+    <li class="list-group-item">
+      <div class="d-flex">
+        <img
+          src="{{item.product.cover.url}}"
+          class="cover-snippet mx-1"
+          alt=""
+        />
+        <a
+          href="{% url 'mainapp:book-detail' item.product.id %}"
+          class="mr-auto"
+          ><strong>{{item.product.title}} </strong></a
+        >
 
-      <form
-        method="POST"
-        action="{% url 'mainapp:cart-remove' item.product.id %}"
-      >
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Remove from Cart</button>
-      </form>
+        <strong class="mx-1">{{item.get_total}}</strong>
+        <strong class="mx-1">{{item.product.price}}</strong>
+
+        <div class="counter">
+          <div
+            class="arrow-up increase"
+            id="arrow-up"
+            data-product="{{item.product.id}}"
+            data-action="plus"
+          ></div>
+          <div class="quantity">
+            <input
+              type="number"
+              id="quantity"
+              value="1"
+              data-product="{{item.product.id}}"
+            />
+          </div>
+          <div
+            class="arrow-down increase"
+            id="arrow-down"
+            data-product="{{item.product.id}}"
+            data-action="minus"
+          ></div>
+        </div>
+        <form
+          method="POST"
+          action="{% url 'mainapp:cart-remove' item.product.id %}"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm ml-1">
+            <i class="fa-sharp fa-solid fa-trash-can"></i>
+          </button>
+        </form>
+      </div>
     </li>
 
     {% endfor %}
   </ul>
+  <button type="button" class="btn btn-primary my-1">
+    Your Total is <span class="badge badge-light">{{cart.get_cart_total}}</span>
+  </button>
   {% else %}
   <h1>Your cart is empty !!</h1>
 
