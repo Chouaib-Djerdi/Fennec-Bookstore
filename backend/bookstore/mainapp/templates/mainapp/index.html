@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+  <head>
+    <title>My Bookstore</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{% static 'mainapp/js/main.js' %}"></script>
+    <script>
+      fetch("http://127.0.0.1:8000/api/books/")
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error));
+    </script>
+  </head>
+  <body>
+    <h1>My Bookstore</h1>
+    <div id="books"></div>
+
+    <div id="book-list"></div>
+  </body>
+</html>

@@ -41,11 +41,7 @@
     {% for book in books %}
 
     <div class="card">
-      <img
-        class="card-img-top"
-        src="{{book.cover.url}}"
-        alt="Card image cap"
-      />
+      <img class="card-img-top" src="{{book.cover.url}}" alt="Card image cap" />
       <div class="card-body">
         <a href="{% url 'mainapp:book-detail' book.id %}"
           ><h5 class="card-title">{{book.title}}</h5></a
@@ -55,24 +51,25 @@
         >
       </div>
       <div class="card-footer">
-        <p class="card-text d-inline">{{book.price}}</p>
-        <button class="btn btn-success" type="submit">
-          <i class="fa-solid fa-cart-plus"></i>
-        </button>
-        <a
-          href="{% url 'mainapp:wishlist-add' book.id %}"
-          class="btn btn-info"
-          type="submit"
-        >
-          Add to Wishlist
-        </a>
-        <a
-          href="{% url 'mainapp:cart-add' book.id %}"
-          class="btn btn-success"
-          type="submit"
-        >
-          Add to Cart
-        </a>
+        <div class="d-flex">
+          <button
+            href="{% url 'mainapp:wishlist-add' book.id %}"
+            class="btn btn-danger"
+            type="submit"
+          >
+            <i class="fa-solid fa-heart"></i>
+          </button>
+          <button
+            href="{% url 'mainapp:cart-add' book.id %}"
+            class="btn btn-success mx-1 update-cart"
+            type="submit"
+            data-product="{{book.id}}"
+            data-action="add"
+          >
+            <i class="fa-solid fa-cart-plus"></i>
+          </button>
+          <p class="card-text ml-auto">{{book.price}}</p>
+        </div>
       </div>
     </div>
 

@@ -4,7 +4,9 @@ from . import models
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-
+from django.http import JsonResponse
+import json
+from .utils import cookieCart,cartData,guestOrder
 
 # Create your views here.
 def mainpage(request):
@@ -95,12 +97,18 @@ def add_to_cart(request,pk):
     order_item.save()
     return redirect('/')
 
-@login_required
-def cart(request):
-    cart, created = models.Order.objects.get_or_create(customer=request.user)
-    cart_items = cart.orderitem_set.all()
 
-    return render(request,'mainapp/cart.html',context={'cart_items':cart_items,'cart':cart})
+def cart(request):
+    # cart, created = models.Order.objects.get_or_create(customer=request.user.customer)
+    # cart_items = cart.orderitem_set.all()
+
+    # return render(request,'mainapp/cart.html',context={'cart_items':cart_items,'cart':cart})
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    context = {'cart_items':items, 'cart':order}
+    return render(request, 'mainapp/cart.html', context)
     
 @login_required
 def remove_from_cart(request, pk):  
@@ -110,3 +118,31 @@ def remove_from_cart(request, pk):
     orderitem.delete()
     return redirect('/cart/')
     
+def updateitem(request):
+    data = json.loads(request.body)
+    productId  = data['productId']
+    action = data['action']
+    print('ProductId :',productId)
+    print('Action :',action)
+
+    customer = request.user.customer
+    product = models.Book.objects.get(id=productId)
+    order, created = models.Order.objects.get_or_create(customer=customer,complete=False)
+    orderitem, created = models.OrderItem.objects.get_or_create(order=order, product=product) 
+    
+    if action == 'add':
+        orderitem.quantity = (orderitem.quantity + 1)
+    elif action == 'remove':
+        orderitem.quantity = (orderitem.quantity - 1)
+
+    orderitem.save()
+
+    if orderitem.quantity <= 0:
+        orderitem.delete()
+
+
+    return JsonResponse('Item was added',safe=False) 
+
+
+def index(request):
+    return render(request,'mainapp/index.html')

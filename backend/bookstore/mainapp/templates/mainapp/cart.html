@@ -1,5 +1,5 @@
 {% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
-
+{%comment %}
 <div class="container">
   {% if cart_items %}
 
@@ -71,5 +71,112 @@
   <h1>Your cart is empty !!</h1>
 
   {% endif %}
+</div>
+{% endcomment %} {% comment %}
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box-element">
+      <br />
+      <br />
+      <table class="table">
+        <tr>
+          <th>
+            <h5>Items: <strong>{{cart.get_cart_items}}</strong></h5>
+          </th>
+          <th>
+            <h5>Total:<strong> ${{cart.get_cart_total}}</strong></h5>
+          </th>
+        </tr>
+      </table>
+    </div>
+
+    <br />
+    <div class="box-element">
+      <div class="cart-row">
+        <div style="flex: 2"></div>
+        <div style="flex: 2"><strong>Item</strong></div>
+        <div style="flex: 1"><strong>Price</strong></div>
+        <div style="flex: 1"><strong>Quantity</strong></div>
+        <div style="flex: 1"><strong>Total</strong></div>
+      </div>
+      {% for item in cart_items %}
+      <div class="cart-row">
+        <div style="flex: 2">
+          <img class="row-image" src="{{item.product.cover.url}}" />
+        </div>
+        <div style="flex: 2"><p>{{item.product.title}}</p></div>
+        <div style="flex: 1"><p>${{item.product.price|floatformat:2}}</p></div>
+        <div style="flex: 1">
+          <p class="quantity">{{item.quantity}}</p>
+          <div class="quantity">
+            <img
+              data-product="{{item.product.id}}"
+              data-action="add"
+              class="chg-quantity update-cart"
+              src=""
+            />
+
+            <img
+              data-product="{{item.product.id}}"
+              data-action="remove"
+              class="chg-quantity update-cart"
+              src=""
+            />
+          </div>
+        </div>
+        <div style="flex: 1"><p>${{item.get_total|floatformat:2}}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endcomment %}
+
+<div class="container">
+  <span class="badge badge-light">{{cart.get_cart_items}}</span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">quantity</th>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <th scope="row">
+          <button
+            data-product="{{item.product.id}}"
+            data-action="add"
+            class="btn btn-dark btn-sm update-cart"
+          >
+            <span>&#8593;</span>
+          </button>
+          {{item.quantity}}
+          <button
+            data-product="{{item.product.id}}"
+            data-action="remove"
+            class="btn btn-dark btn-sm update-cart"
+          >
+            <span>&#8595;</span>
+          </button>
+        </th>
+        <td>
+          <div class="d-flex">
+            <img class="cover-snippet" src="{{item.product.cover.url}}" />
+            <strong>{{item.product.title}}</strong>
+          </div>
+        </td>
+        <td>{{item.product.price}}</td>
+        <td>${{item.get_total|floatformat:2}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary my-1">
+    Your Total is <span class="badge badge-light">{{cart.get_cart_total}}</span>
+  </button>
 </div>
 {% endblock content2 %}
