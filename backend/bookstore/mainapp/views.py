@@ -7,12 +7,31 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 from .utils import cookieCart,cartData,guestOrder
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+
+
+
+@csrf_exempt
+def book_rating(request):
+    if request.method == 'POST':
+        book_id = request.POST.get('book_id')
+        rating = request.POST.get('rating')
+
+        # Save the rating to the database
+
+        data = {'success': True}
+        return JsonResponse(data)
+    else:
+        data = {'success': False}
+        return JsonResponse(data)
+
+
+
 def mainpage(request):
     books = models.Book.objects.all()
     
-    return render(request,'mainapp/main.html',{'books':books})
+    return render(request,'mainapp/fen.html',{'books':books})
 
 def bookdetailpage(request,pk):
     book = models.Book.objects.get(pk=pk)

@@ -31,3 +31,4 @@ function Decrease(productId, action) {
   quantity = quantity - 1;
   document.querySelector(`input[data-product=${productId}]`).value = quantity;
 }
+

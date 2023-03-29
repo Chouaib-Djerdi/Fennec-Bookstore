@@ -60,11 +60,17 @@ class Book(models.Model):
     year = models.IntegerField()
     nbr_pages = models.IntegerField()
     price = models.DecimalField(max_digits=15,decimal_places=2,default=00.00)
-    rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
+    # rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     author = models.ForeignKey(Author, on_delete=models.SET_NULL,null=True, blank=True)
 
     def __str__(self):
         return self.title
+    
+
+class BookRating(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField()
     
 
 class Wishlist(models.Model):

@@ -1,0 +1,468 @@
+{% extends 'mainapp/navbar.html' %} {% load static %}{% block content2 %}
+<section class="first">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 px-4 col-sm-0 my-4">
+        <h1>Buy and Sell your best Books for the best price</h1>
+
+        <form
+          class="form-inline"
+          method="POST"
+          action="{% url 'mainapp:searchbar' %}"
+        >
+          {% csrf_token %}
+          <input
+            class="form-control col-lg-8 mr-sm-2"
+            type="search"
+            placeholder="Search Your Book, Publisher..."
+            aria-label="Search"
+            name="searched"
+          />
+
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="col-lg-6 col-sm-12 my-4">
+        <img class="main-img" src="https://svgshare.com/i/qpU.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="book my-4">
+  <div class="titles">
+    <div class="eleven">
+      <a href="">
+        <h1>Discover Our trending books</h1>
+      </a>
+    </div>
+  </div>
+  <div class="row py-4">
+    {% for book in books %}
+    <div class="col-lg-3 text-center col-sm-6 text-center col-6 text-center">
+      <a href="{% url 'mainapp:book-detail' book.id %}">
+        <div class="card border-0 align-items-center">
+          <div class="card-body">
+            <img src="{{book.cover.url}}" alt="" />
+            <div class="row py-2">
+              <div class="col-lg-7 px-3 col-md-7 col-sm-12">
+                <a href=""><b> {{book.title}}</b></a>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12">
+                <a href=""> <h6>{{book.price}}</h6></a>
+              </div>
+            </div>
+            <a class="writer px-1" href="">{{book.author}} </a>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<div class="titles">
+  <div class="nine">
+    <h1>
+      our categories<span> <a href=""> Fennec books</a></span>
+    </h1>
+  </div>
+</div>
+<section class="categories">
+  <div class="carouseltot">
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#hero-carousel"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#hero-carousel"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#hero-carousel"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active c-item">
+          <img
+            src="{% static 'mainapp/images/philo.jpg' %}"
+            class="d-block w-100 c-img"
+            alt="Slide 1"
+          />
+          <div class="carousel-caption top-0 mt-4">
+            <p class="mt-5 fs-3 text-uppercase">Discover Our</p>
+            <h1 class="display-1 fw-bolder text-capitalize">
+              Books Of Philosophy
+            </h1>
+            <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Explore</button>
+          </div>
+        </div>
+        <div class="carousel-item c-item">
+          <img
+            src="{% static 'mainapp/images/history.jpg' %}"
+            class="d-block w-100 c-img"
+            alt="Slide 2"
+          />
+          <div class="carousel-caption top-0 mt-4">
+            <p class="text-uppercase fs-3 mt-5">Discover Our</p>
+            <p class="display-1 fw-bolder text-capitalize">Books Of History</p>
+            <button
+              class="btn btn-primary px-4 py-2 fs-5 mt-5"
+              data-bs-toggle="modal"
+              data-bs-target="#booking-modal"
+            >
+              Explore
+            </button>
+          </div>
+        </div>
+        <div class="carousel-item c-item">
+          <img
+            src="{% static 'mainapp/images/science.jpg' %}"
+            class="d-block w-100 c-img"
+            alt="Slide 3"
+          />
+          <div class="carousel-caption top-0 mt-4">
+            <p class="text-uppercase fs-3 mt-5">Discover Our</p>
+            <p class="display-1 fw-bolder text-capitalize">Books Of Science</p>
+            <button
+              class="btn btn-primary px-4 py-2 fs-5 mt-5"
+              data-bs-toggle="modal"
+              data-bs-target="#booking-modal"
+            >
+              Explore
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#hero-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#hero-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+<section class="Recent">
+  <div class="titles">
+    <div class="eleven">
+      <a href="">
+        <h1>Discover Our Recent books</h1>
+      </a>
+    </div>
+  </div>
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+        <a href="">
+          <div class="card">
+            <div class="img-container">
+              <img
+                src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
+                alt=""
+              />
+            </div>
+            <div class="card-details">
+              <h2>Harry Potter</h2>
+              <p>Writer Of The Book</p>
+              <h6>110.0DA</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+        <a href="">
+          <div class="card">
+            <div class="img-container">
+              <img src="./images/ho.jpg" alt="" />
+            </div>
+            <div class="card-details">
+              <h2>House Of The Dragon</h2>
+              <p>Writer Of The Book</p>
+              <h6>110.0DA</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+        <a href="">
+          <div class="card">
+            <div class="img-container">
+              <img src="./images/sher.jfif" alt="" />
+            </div>
+            <div class="card-details">
+              <h2>Sherlock Holmes</h2>
+              <p>Writer Of The Book</p>
+              <h6>110.0DA</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+        <a href="">
+          <div class="card">
+            <div class="img-container">
+              <img
+                src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
+                alt=""
+              />
+            </div>
+            <div class="card-details">
+              <h2>Harry Potter</h2>
+              <p>Writer Of The Book</p>
+              <h6>110.0DA</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+        <a href="">
+          <div class="card">
+            <div class="img-container">
+              <img src="./images/books.jpeg" alt="" />
+            </div>
+            <div class="card-details">
+              <h2>Harry Potter</h2>
+              <p>Writer Of The Book</p>
+              <h6>110.0DA</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+        <a href="">
+          <div class="card">
+            <div class="img-container">
+              <img src="./images/ho.jpg" alt="" />
+            </div>
+            <div class="card-details">
+              <h2>House Of The Dragon</h2>
+              <p>Writer Of The Book</p>
+              <h6>110.0DA</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="choice">
+  <div class="Recent">
+    <div class="titles">
+      <div class="eleven">
+        <a href="">
+          <h1>our choices for you</h1>
+        </a>
+      </div>
+    </div>
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+          <a href="">
+            <div class="card">
+              <div class="img-container">
+                <img
+                  src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="card-details">
+                <h2>Harry Potter</h2>
+                <p>Writer Of The Book</p>
+                <h6>110.0DA</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+          <a href="">
+            <div class="card">
+              <div class="img-container">
+                <img src="./images/ho.jpg" alt="" />
+              </div>
+              <div class="card-details">
+                <h2>House Of The Dragon</h2>
+                <p>Writer Of The Book</p>
+                <h6>110.0DA</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+          <a href="">
+            <div class="card">
+              <div class="img-container">
+                <img src="./images/sher.jfif" alt="" />
+              </div>
+              <div class="card-details">
+                <h2>Sherlock Holmes</h2>
+                <p>Writer Of The Book</p>
+                <h6>110.0DA</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+          <a href="">
+            <div class="card">
+              <div class="img-container">
+                <img
+                  src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="card-details">
+                <h2>Harry Potter</h2>
+                <p>Writer Of The Book</p>
+                <h6>110.0DA</h6>
+                <p></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+          <a href="">
+            <div class="card">
+              <div class="img-container">
+                <img src="./images/books.jpeg" alt="" />
+              </div>
+              <div class="card-details">
+                <h2>Harry Potter</h2>
+                <p>Writer Of The Book</p>
+                <h6>110.0DA</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+          <a href="">
+            <div class="card">
+              <div class="img-container">
+                <img src="./images/ho.jpg" alt="" />
+              </div>
+              <div class="card-details">
+                <h2>House Of The Dragon</h2>
+                <p>Writer Of The Book</p>
+                <h6>110.0DA</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+<section class="authors">
+  <div class="titles">
+    <div class="two">
+      <h1>
+        Publishers
+        <span>explore more about our publishers</span>
+      </h1>
+    </div>
+  </div>
+  <div class="slider">
+    <div class="slide-track">
+      <a href="">
+        <div class="slide">
+          <img src="./images/th.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/publi.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/publi4.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/publi5.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/pink.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/pink.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/publi.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+      <a href="">
+        <div class="slide">
+          <img src="./images/th.jfif" height="100" width="250" alt="" />
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <ul class="social-icon">
+    <li class="social-icon__item">
+      <a class="social-icon__link" href="#">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+    </li>
+    <li class="social-icon__item">
+      <a class="social-icon__link" href="#">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a>
+    </li>
+    <li class="social-icon__item">
+      <a class="social-icon__link" href="#">
+        <ion-icon name="logo-linkedin"></ion-icon>
+      </a>
+    </li>
+    <li class="social-icon__item">
+      <a
+        class="social-icon__link"
+        href="https://www.instagram.com/mohamed.hani1/"
+      >
+        <ion-icon name="logo-instagram"></ion-icon>
+      </a>
+    </li>
+  </ul>
+  <ul class="menu">
+    <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+    <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Services</a>
+    </li>
+    <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+    <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+  </ul>
+  <p>&copy;2023 Fennec Book | All Rights Reserved</p>
+</footer>
+{% endblock content2 %}

@@ -101,6 +101,20 @@
   {% comment %} OUT OF THE ROW {% endcomment %}
 
   <div class="row justify-content-center align-items-end">
+    <form
+      method="POST"
+      action="{% url 'mainapp:book_rating' %}"
+      class="rating-form"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="book_id" value="{{ book.id }}" />
+      <i class="fa fa-star" data-rating="1"></i>
+      <i class="fa fa-star" data-rating="2"></i>
+      <i class="fa fa-star" data-rating="3"></i>
+      <i class="fa fa-star" data-rating="4"></i>
+      <i class="fa fa-star" data-rating="5"></i>
+    </form>
+
     <button type="button" class="btn btn-danger mx-1">
       Download <i class="fa-sharp fa-regular fa-circle-down"></i>
     </button>
@@ -162,5 +176,34 @@
     {% endfor %}
   </div>
 </div>
+
+<script>
+  // Rating js
+
+  const stars = document.querySelectorAll(".fa-star");
+
+  stars.forEach(function (star) {
+    star.addEventListener("click", function () {
+      const rating = this.dataset.rating;
+      const bookId = document.querySelector('input[name="book_id"]').value;
+      const csrfToken = document.querySelector(
+        'input[name="csrfmiddlewaretoken"]'
+      ).value;
+
+      const formData = new FormData();
+      formData.append("book_id", bookId);
+      formData.append("rating", rating);
+      formData.append("csrfmiddlewaretoken", csrfToken);
+
+      fetch("http://127.0.0.1:8000/rating/", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+    });
+  });
+</script>
 
 {% endblock content2 %}

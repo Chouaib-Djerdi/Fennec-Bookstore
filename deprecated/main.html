@@ -1,0 +1,106 @@
+{% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
+<section class="first-section">
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-lg-6 col-sm-0">
+        <h1 class="main-h1">
+          Your favourite place to<br /><span style="color: #fea82f">read</span>
+        </h1>
+        <form
+          class="form-inline"
+          method="POST"
+          action="{% url 'mainapp:searchbar' %}"
+        >
+          {% csrf_token %}
+          <input
+            class="form-control col-lg-8 mr-sm-2"
+            type="search"
+            placeholder="Search Your Book, Publisher..."
+            aria-label="Search"
+            name="searched"
+          />
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+      <div class="col-6">
+        <img
+          src="https://svgshare.com/i/qpU.svg"
+          class="main-pic"
+          alt="Reader"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}
+<section class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="col-6"></div>
+    </div>
+  </div>
+</section>
+{% endcomment %} {% comment %} SECTION TRENDING BOOKS {% endcomment %}
+
+<section class="trending-books my-5 p-5">
+  <div class="my-5">
+    <div class="title">
+      <div class="eleven">
+        <a href="{% url 'mainapp:book-list' %}">
+          <h1 class="heading">Discover our Trending Books</h1>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for book in books %}
+
+    <div class="col-3">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="{{book.cover.url}}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <a href="{% url 'mainapp:book-detail' book.id %}"
+            ><h5 class="card-title">{{book.title}}</h5></a
+          >
+          <a href="{% url 'mainapp:author-detail' book.id %}"
+            ><p class="card-text">{{book.author.name}}</p></a
+          >
+        </div>
+        <div class="card-footer">
+          <div class="d-flex">
+            <button
+              href="{% url 'mainapp:wishlist-add' book.id %}"
+              class="btn btn-danger"
+              type="submit"
+            >
+              <i class="fa-solid fa-heart"></i>
+            </button>
+            <button
+              href="{% url 'mainapp:cart-add' book.id %}"
+              class="btn btn-success mx-1 update-cart"
+              type="submit"
+              data-product="{{book.id}}"
+              data-action="add"
+            >
+              <i class="fa-solid fa-cart-plus"></i>
+            </button>
+            <p class="card-text ml-auto">{{book.price}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content2 %}
