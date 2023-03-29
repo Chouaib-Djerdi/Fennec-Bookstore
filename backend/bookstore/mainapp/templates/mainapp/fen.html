@@ -1,9 +1,12 @@
 {% extends 'mainapp/navbar.html' %} {% load static %}{% block content2 %}
+
 <section class="first">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 px-4 col-sm-0 my-4">
-        <h1>Buy and Sell your best Books for the best price</h1>
+      <div class="col-lg-6 px-4 col-sm-0 my-5">
+        <h1>
+          Your favourite place to<br /><span style="color: #fea82f">read</span>
+        </h1>
 
         <form
           class="form-inline"
@@ -48,7 +51,7 @@
                 <a href=""><b> {{book.title}}</b></a>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-12">
-                <a href=""> <h6>{{book.price}}</h6></a>
+                <a href=""> <h6>{{book.price}} DA</h6></a>
               </div>
             </div>
             <a class="writer px-1" href="">{{book.author}} </a>
@@ -61,9 +64,9 @@
 </section>
 <div class="titles">
   <div class="nine">
-    <h1>
-      our categories<span> <a href=""> Fennec books</a></span>
-    </h1>
+    <a href="{% url 'mainapp:category' %}"
+      ><h1>Our Categories<span> Fennec books</span></h1></a
+    >
   </div>
 </div>
 <section class="categories">
@@ -94,7 +97,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active c-item">
           <img
-            src="{% static 'mainapp/images/philo.jpg' %}"
+            src="{% static 'mainapp/images/philosophy.jpg' %}"
             class="d-block w-100 c-img"
             alt="Slide 1"
           />
@@ -465,4 +468,5 @@
   </ul>
   <p>&copy;2023 Fennec Book | All Rights Reserved</p>
 </footer>
+
 {% endblock content2 %}
