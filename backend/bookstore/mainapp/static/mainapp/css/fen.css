@@ -9,8 +9,11 @@ a {
 
 .container1 {
   background-color: #ffffff;
-  max-width: 1190px;
+  max-width: 1320px;
   margin: auto;
+  /* floating effect */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 body {
@@ -23,11 +26,12 @@ body {
 
 .navbar {
   background: #fcecdd;
+  padding: 0;
 }
 
 .navbar-brand img {
-  height: 7rem;
-  width: 9rem;
+  height: 6rem;
+  width: 8rem;
   padding-left: 0rem;
   margin-left: 0;
 }
@@ -67,7 +71,8 @@ body {
 }
 
 .first img {
-  width: 100%;
+  width: 90%;
+  
 }
 
 .first h1 {
@@ -79,7 +84,7 @@ body {
 }
 
 .first form {
-  width: 70%;
+  width: 90%;
   display: flex;
 }
 
@@ -103,8 +108,8 @@ body {
   }
 
   .first h1 {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 40px;
+    line-height: 40px;
   }
 
   .navbar-brand img {
@@ -112,6 +117,15 @@ body {
     width: 6rem;
     padding-left: 0rem;
     margin-left: 0;
+  }
+
+  .first img {
+    display: none;
+  }
+
+  .first form {
+    width: 100%;
+    display: flex;
   }
 }
 

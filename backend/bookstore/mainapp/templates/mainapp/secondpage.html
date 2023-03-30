@@ -1,0 +1,293 @@
+{% extends 'mainapp/navbar.html' %}{% load static %} {% block extrahead %} <link
+rel="stylesheet" href="{% static "mainapp/css/secondpage.css" %}"> {% endblock%}
+{% block content2 %}
+<div class="container my-5">
+  <section class="description">
+    <section class="description">
+      <!-- start of the title  -->
+      <div class="row align-items-center">
+        <div
+          class="col-lg-6 text-center col-md-6 text-center col-sm-12 text-center"
+        >
+          <!-- book image -->
+          <div class="imgcontainer">
+            <!-- class book picture  -->
+            <img src="{{book.cover.url}}" class="my-4 book-picture" alt="" />
+          </div>
+          <!-- end of book image  -->
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="text">
+            <div class="booktitle my-4">
+              <!-- book title  -->
+              <h2 class="book-title">{{book.title}}</h2>
+              <!--class book writer -->
+              <p>By <span class="book-writer">{{book.author}}</span></p>
+            </div>
+            <!-- class book description  -->
+            <div class="des">
+              <p class="book-description">{{book.description}}</p>
+            </div>
+            <!-- end of book description  -->
+            <!-- book information  -->
+            <div class="aut py-4 my-4">
+              <!-- maison d'édition  -->
+              <ul class="d-flex flex-column">
+                <li class="d-flex">
+                  <h6>Maison D'édition:</h6>
+                  <!-- class publisher  -->
+                  <p class="px-4 book-publisher">{{book.author.publisher}}</p>
+                </li>
+              </ul>
+              <!-- price  -->
+              <ul class="d-flex flex-column">
+                <li class="d-flex">
+                  <h6>Prix:</h6>
+                  <!-- class book price  -->
+                  <p class="px-4 book-price">{{book.price}}</p>
+                </li>
+              </ul>
+              <div class="buy text-center">
+                <button>Add to Card</button>
+                <button>Instant purchase</button>
+              </div>
+              <!-- end of book information  -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of the book  -->
+      <!-- rate start  -->
+      <div class="rat text-center">
+        <b class="text-center">Rate this book</b>
+      </div>
+      <div class="star-source">
+        <svg>
+          <linearGradient
+            x1="50%"
+            y1="5.41294643%"
+            x2="87.5527344%"
+            y2="65.4921875%"
+            id="grad"
+          >
+            <stop stop-color="#FEA82F" offset="0%"></stop>
+            <stop stop-color="#FEA82F" offset="60%"></stop>
+            <stop stop-color="#FEA82F" offset="100%"></stop>
+          </linearGradient>
+          <symbol id="star" viewBox="153 89 106 108">
+            <polygon
+              id="star-shape"
+              stroke="url(#grad)"
+              stroke-width="5"
+              fill="currentColor"
+              points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"
+            ></polygon>
+          </symbol>
+        </svg>
+      </div>
+      <div class="star-container">
+        <input type="radio" name="star" id="five" />
+        <label for="five">
+          <svg class="star">
+            <use xlink:href="#star" />
+          </svg>
+        </label>
+        <input type="radio" name="star" id="four" />
+        <label for="four">
+          <svg class="star">
+            <use xlink:href="#star" />
+          </svg>
+        </label>
+        <input type="radio" name="star" id="three" />
+        <label for="three">
+          <svg class="star">
+            <use xlink:href="#star" />
+          </svg>
+        </label>
+        <input type="radio" name="star" id="two" />
+        <label for="two">
+          <svg class="star">
+            <use xlink:href="#star" />
+          </svg>
+        </label>
+        <input type="radio" name="star" id="one" />
+        <label for="one">
+          <svg class="star">
+            <use xlink:href="#star" />
+          </svg>
+        </label>
+      </div>
+      <!-- end rate  -->
+      <section class="Recent">
+        <div class="container my-4">
+          <div class="row">
+            {% for book in alike_books %}
+            <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
+              <a href="{% url 'mainapp:book-detail' book.id %}">
+                <div class="card">
+                  <div class="img-container">
+                    <img src="{{book.cover.url}}" alt="" />
+                  </div>
+                  <div class="card-details">
+                    <h2>{{book.title}}</h2>
+                    <p>{{book.author}}</p>
+                    <h6>{{book.price}} DA</h6>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section class="cmnts">
+        <div class="container mt-5">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+              <div
+                class="headings d-flex justify-content-between align-items-center mb-3"
+              >
+                <h5>Unread comments(6)</h5>
+              </div>
+              <div class="card p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="user d-flex flex-row align-items-center">
+                    <img
+                      src="./images/user.jfif"
+                      width="30"
+                      class="user-img rounded-circle mr-2"
+                    />
+                    <span
+                      ><small class="font-weight-bold text-secondary">
+                        james_olesenn</small
+                      >
+                      <small class="font-weight-bold"
+                        >Hmm, This poster looks cool</small
+                      ></span
+                    >
+                  </div>
+                  <small>2 days ago</small>
+                </div>
+                <div
+                  class="action d-flex justify-content-between mt-2 align-items-center"
+                >
+                  <div class="reply px-4">
+                    <small>Remove</small>
+                    <span class="dots"></span>
+                    <small>Reply</small>
+                    <span class="dots"></span>
+                  </div>
+                  <div class="icons align-items-center">
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-check-circle-o check-icon"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card p-3 mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="user d-flex flex-row align-items-center">
+                    <img
+                      src="./images/user.jfif"
+                      width="30"
+                      class="user-img rounded-circle mr-2"
+                    />
+                    <span
+                      ><small class="font-weight-bold text-secondary"
+                        >olan_sams</small
+                      >
+                      <small class="font-weight-bold"
+                        >Loving your work and profile!
+                      </small></span
+                    >
+                  </div>
+                  <small>3 days ago</small>
+                </div>
+                <div
+                  class="action d-flex justify-content-between mt-2 align-items-center"
+                >
+                  <div class="reply px-4">
+                    <small>Remove</small>
+                    <span class="dots"></span>
+                    <small>Reply</small>
+                    <span class="dots"></span>
+                  </div>
+                  <div class="icons align-items-center">
+                    <i class="fa fa-check-circle-o check-icon text-primary"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card p-3 mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="user d-flex flex-row align-items-center">
+                    <img
+                      src="./images/user.jfif"
+                      width="30"
+                      class="user-img rounded-circle mr-2"
+                    />
+                    <span
+                      ><small class="font-weight-bold text-secondary"
+                        >rashida_jones</small
+                      >
+                      <small class="font-weight-bold"
+                        >Really cool Which filter are you using?
+                      </small></span
+                    >
+                  </div>
+                  <small>3 days ago</small>
+                </div>
+                <div
+                  class="action d-flex justify-content-between mt-2 align-items-center"
+                >
+                  <div class="reply px-4">
+                    <small>Remove</small>
+                    <span class="dots"></span>
+                    <small>Reply</small>
+                    <span class="dots"></span>
+                  </div>
+                  <div class="icons align-items-center">
+                    <i class="fa fa-user-plus text-muted"></i>
+                    <i class="fa fa-star-o text-muted"></i>
+                    <i class="fa fa-check-circle-o check-icon text-primary"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card p-3 mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="user d-flex flex-row align-items-center">
+                    <img
+                      src="./images/user.jfif"
+                      width="30"
+                      class="user-img rounded-circle mr-2"
+                    />
+                    <span
+                      ><small class="font-weight-bold text-secondary"
+                        >simona_rnasi</small
+                      >
+                      <small>i like this book</small></span
+                    >
+                  </div>
+                  <small>3 days ago</small>
+                </div>
+                <div
+                  class="action d-flex justify-content-between mt-2 align-items-center"
+                >
+                  <div class="reply px-4">
+                    <small>Remove</small>
+                    <span class="dots"></span>
+                    <small>Reply</small>
+                    <span class="dots"></span>
+                  </div>
+                  <div class="icons align-items-center">
+                    <i class="fa fa-check-circle-o check-icon text-primary"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+</div>
+{% endblock content2 %}

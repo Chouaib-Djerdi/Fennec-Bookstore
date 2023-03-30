@@ -1,0 +1,412 @@
+.description {
+  margin-top: 110px;
+}
+
+.description .imgcontainer img {
+  width: 280px;
+}
+
+.description .booktitle h2 {
+  color: #fea82f;
+  font-weight: 600;
+}
+
+.description .booktitle a {
+  color: #a97e41;
+}
+
+.description .text {
+  width: 95%;
+  margin: auto;
+}
+
+.description .imgcontainer {
+  width: 100%;
+  align-items: end;
+}
+
+.description .aut {
+  margin-left: 0;
+}
+
+.description .aut h6 {
+  color: #fea82f;
+  font-size: 18px;
+  float: left;
+}
+
+.description .aut p {
+  font-size: 218x;
+  float: left;
+}
+
+.des {
+  width: 100%;
+}
+
+.description .booktitlep a {
+  color: #a97e41;
+}
+
+@media only screen and (min-width: 767px) {
+  .description .booktitlep {
+    visibility: hidden;
+  }
+}
+
+.description .row {
+  margin-top: -70px;
+}
+
+@media only screen and (max-width: 767px) {
+  .description img {
+    max-height: 300px;
+  }
+
+  .description .row {
+    margin-top: -5px;
+  }
+
+  .description .booktitlep h2 {
+    color: #fea82f;
+    font-weight: 600;
+  }
+
+  .description .booktitle {
+    visibility: hidden;
+  }
+
+  .description .des {
+    margin-top: -15%;
+  }
+}
+
+@media only screen and (max-width: 547px) {
+  .description .des {
+    margin-top: -25%;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0.15rem;
+  color: #fea82f;
+}
+
+/* hide radio buttons */
+
+input[name="star"] {
+  display: inline-block;
+  width: 0;
+  opacity: 0;
+  margin-left: -2px;
+}
+
+.star-source {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+/* set initial color to transparent so fill is empty*/
+
+.star {
+  color: transparent;
+  transition: color 0.2s ease-in-out;
+}
+
+/* set direction to row-reverse so 5th star is at the end and ~ can be used to fill all sibling stars that precede last starred element*/
+
+.star-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+label:hover ~ label .star,
+svg.star:hover,
+input[name="star"]:focus ~ label .star,
+input[name="star"]:checked ~ label .star {
+  color: #fea82f;
+}
+
+input[name="star"]:checked + label .star {
+  animation: starred 0.5s;
+}
+
+input[name="star"]:checked + label {
+  animation: scaleup 1s;
+}
+
+@keyframes scaleup {
+  from {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes starred {
+  from {
+    color: #e1aa5d;
+  }
+
+  to {
+    color: #fea82f;
+  }
+}
+
+.rat b {
+  color: #aa701e;
+}
+
+.buy button {
+  width: 130px;
+  background-color: #fea82f;
+  border: #fea82f;
+  border-radius: 10px;
+  color: white;
+  height: 30px;
+  font-weight: 200;
+}
+
+.Recent {
+  margin-top: 5rem;
+}
+
+.Recent .title h1 {
+  margin-left: 18px;
+  font-weight: 600;
+  color: #fea82f;
+  font-size: 40px;
+}
+
+.Recent .title p {
+  margin-left: 18px;
+  font-size: 18px;
+}
+
+.Recent .title a {
+  color: #fea82f;
+  text-decoration: underline;
+}
+
+.Recent .title a:hover {
+  color: #cc9343;
+  cursor: pointer;
+}
+
+.Recent .card {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform-style: preserve-3d;
+  transform: perspective(2000px);
+  transition: 1s;
+  box-shadow: inset 100px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.Recent .card:hover {
+  z-index: 1111;
+  transform: perspective(2000px) rotate(-5deg);
+  box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.Recent .card .img-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  transform-origin: left;
+  z-index: 1;
+  transition: 1s;
+}
+
+.Recent .card .img-container img {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.Recent .card:hover .img-container {
+  transform: rotateY(-135deg);
+}
+
+.Recent .card .card-details {
+  position: absolute;
+  padding: 25%;
+  box-sizing: border-box;
+  color: #000;
+  align-items: center;
+  text-align: center;
+}
+
+.Recent .card .card-details h2 {
+  margin: 0;
+  padding: 0.5em 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #ed363a;
+}
+
+.Recent .card .card-details p {
+  margin: 0;
+  padding: 0;
+  line-height: 25px;
+  font-size: 10px;
+  overflow: hidden;
+}
+
+.Recent .card .card-details h6 {
+  color: #fea82f;
+  border-radius: 17px;
+  border: 2px solid #fea82f;
+  width: 90px;
+}
+
+.Recent .card .card-details h6:hover {
+  background: #fea82f;
+  color: white;
+  cursor: pointer;
+}
+
+/*cmnts*/
+.cmnts {
+  margin-top: 7rem;
+}
+
+.cmnts .card {
+  border: none;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  border-radius: 4px;
+}
+
+.dots {
+  height: 4px;
+  width: 4px;
+  margin-bottom: 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.badge {
+  padding: 7px;
+  padding-right: 9px;
+  padding-left: 16px;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+}
+
+.user-img {
+  margin-top: 4px;
+}
+
+.user small {
+  color: #000;
+}
+
+.check-icon {
+  font-size: 17px;
+  color: #c3bfbf;
+  top: 1px;
+  position: relative;
+  margin-left: 3px;
+}
+
+.form-check-input {
+  margin-top: 6px;
+  margin-left: -24px !important;
+  cursor: pointer;
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+.icons i {
+  margin-left: 8px;
+}
+
+.reply {
+  margin-left: 12px;
+}
+
+.reply small {
+  color: #b7b4b4;
+}
+
+.reply small:hover {
+  color: #fea82f;
+  cursor: pointer;
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: #fea82f;
+  min-height: 100px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 18rem;
+}
+
+.social-icon,
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+}
+
+.social-icon__link {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.menu__link {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  opacity: 1;
+}
+
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}

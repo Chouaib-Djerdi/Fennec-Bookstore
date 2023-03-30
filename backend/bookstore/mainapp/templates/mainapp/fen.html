@@ -25,8 +25,8 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
-      <div class="col-lg-6 col-sm-12 my-4">
-        <img class="main-img" src="https://svgshare.com/i/qpU.svg" alt="" />
+      <div class="col-lg-6 col-sm-12 my-4 d-flex justify-content-center">
+        <img src="https://svgshare.com/i/qpU.svg" alt="" />
       </div>
     </div>
   </div>
@@ -177,96 +177,22 @@
   </div>
   <div class="container my-4">
     <div class="row">
+      {% for book in books %}
       <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-        <a href="">
+        <a href="{% url 'mainapp:book-detail' book.id %}">
           <div class="card">
             <div class="img-container">
-              <img
-                src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
-                alt=""
-              />
+              <img src="{{book.cover.url}}" alt="" />
             </div>
             <div class="card-details">
-              <h2>Harry Potter</h2>
-              <p>Writer Of The Book</p>
-              <h6>110.0DA</h6>
+              <h2>{{book.title}}</h2>
+              <p>{{book.author}}</p>
+              <h6>{{book.price}} DA</h6>
             </div>
           </div>
         </a>
       </div>
-      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-        <a href="">
-          <div class="card">
-            <div class="img-container">
-              <img src="./images/ho.jpg" alt="" />
-            </div>
-            <div class="card-details">
-              <h2>House Of The Dragon</h2>
-              <p>Writer Of The Book</p>
-              <h6>110.0DA</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-        <a href="">
-          <div class="card">
-            <div class="img-container">
-              <img src="./images/sher.jfif" alt="" />
-            </div>
-            <div class="card-details">
-              <h2>Sherlock Holmes</h2>
-              <p>Writer Of The Book</p>
-              <h6>110.0DA</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-        <a href="">
-          <div class="card">
-            <div class="img-container">
-              <img
-                src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
-                alt=""
-              />
-            </div>
-            <div class="card-details">
-              <h2>Harry Potter</h2>
-              <p>Writer Of The Book</p>
-              <h6>110.0DA</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-        <a href="">
-          <div class="card">
-            <div class="img-container">
-              <img src="./images/books.jpeg" alt="" />
-            </div>
-            <div class="card-details">
-              <h2>Harry Potter</h2>
-              <p>Writer Of The Book</p>
-              <h6>110.0DA</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-        <a href="">
-          <div class="card">
-            <div class="img-container">
-              <img src="./images/ho.jpg" alt="" />
-            </div>
-            <div class="card-details">
-              <h2>House Of The Dragon</h2>
-              <p>Writer Of The Book</p>
-              <h6>110.0DA</h6>
-            </div>
-          </div>
-        </a>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -281,97 +207,22 @@
     </div>
     <div class="container my-4">
       <div class="row">
+        {% for book in books %}
         <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-          <a href="">
+          <a href="{% url 'mainapp:book-detail' book.id %}">
             <div class="card">
               <div class="img-container">
-                <img
-                  src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
-                  alt=""
-                />
+                <img src="{{book.cover.url}}" alt="" />
               </div>
               <div class="card-details">
-                <h2>Harry Potter</h2>
-                <p>Writer Of The Book</p>
-                <h6>110.0DA</h6>
+                <h2>{{book.title}}</h2>
+                <p>{{book.author}}</p>
+                <h6>{{book.price}} DA</h6>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-          <a href="">
-            <div class="card">
-              <div class="img-container">
-                <img src="./images/ho.jpg" alt="" />
-              </div>
-              <div class="card-details">
-                <h2>House Of The Dragon</h2>
-                <p>Writer Of The Book</p>
-                <h6>110.0DA</h6>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-          <a href="">
-            <div class="card">
-              <div class="img-container">
-                <img src="./images/sher.jfif" alt="" />
-              </div>
-              <div class="card-details">
-                <h2>Sherlock Holmes</h2>
-                <p>Writer Of The Book</p>
-                <h6>110.0DA</h6>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-          <a href="">
-            <div class="card">
-              <div class="img-container">
-                <img
-                  src="./images/Harry-Potter-Chamber-Secrets-JK-Rowling.jpg"
-                  alt=""
-                />
-              </div>
-              <div class="card-details">
-                <h2>Harry Potter</h2>
-                <p>Writer Of The Book</p>
-                <h6>110.0DA</h6>
-                <p></p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-          <a href="">
-            <div class="card">
-              <div class="img-container">
-                <img src="./images/books.jpeg" alt="" />
-              </div>
-              <div class="card-details">
-                <h2>Harry Potter</h2>
-                <p>Writer Of The Book</p>
-                <h6>110.0DA</h6>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
-          <a href="">
-            <div class="card">
-              <div class="img-container">
-                <img src="./images/ho.jpg" alt="" />
-              </div>
-              <div class="card-details">
-                <h2>House Of The Dragon</h2>
-                <p>Writer Of The Book</p>
-                <h6>110.0DA</h6>
-              </div>
-            </div>
-          </a>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -431,42 +282,5 @@
     </div>
   </div>
 </section>
-<footer class="footer">
-  <ul class="social-icon">
-    <li class="social-icon__item">
-      <a class="social-icon__link" href="#">
-        <ion-icon name="logo-facebook"></ion-icon>
-      </a>
-    </li>
-    <li class="social-icon__item">
-      <a class="social-icon__link" href="#">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </a>
-    </li>
-    <li class="social-icon__item">
-      <a class="social-icon__link" href="#">
-        <ion-icon name="logo-linkedin"></ion-icon>
-      </a>
-    </li>
-    <li class="social-icon__item">
-      <a
-        class="social-icon__link"
-        href="https://www.instagram.com/mohamed.hani1/"
-      >
-        <ion-icon name="logo-instagram"></ion-icon>
-      </a>
-    </li>
-  </ul>
-  <ul class="menu">
-    <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-    <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-    <li class="menu__item">
-      <a class="menu__link" href="#">Services</a>
-    </li>
-    <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-    <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-  </ul>
-  <p>&copy;2023 Fennec Book | All Rights Reserved</p>
-</footer>
 
 {% endblock content2 %}

@@ -37,7 +37,7 @@ def bookdetailpage(request,pk):
     book = models.Book.objects.get(pk=pk)
     alike_books = models.Book.objects.filter(genre=book.genre).exclude(pk=pk)
 
-    return render(request,'mainapp/book_detail.html',{'book':book,'alike_books':alike_books})
+    return render(request,'mainapp/secondpage.html',{'book':book,'alike_books':alike_books})
 
 def authordetailpage(request,pk):
     book = models.Book.objects.get(pk=pk)
