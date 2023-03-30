@@ -30,8 +30,8 @@ def book_rating(request):
 
 def mainpage(request):
     books = models.Book.objects.all()
-    
-    return render(request,'mainapp/fen.html',{'books':books})
+    publishers = models.Publisher.objects.all()
+    return render(request,'mainapp/fen.html',{'books':books,'publishers':publishers})
 
 def bookdetailpage(request,pk):
     book = models.Book.objects.get(pk=pk)

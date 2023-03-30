@@ -228,6 +228,7 @@
   </div>
 </section>
 <hr />
+
 <section class="authors">
   <div class="titles">
     <div class="two">
@@ -237,48 +238,30 @@
       </h1>
     </div>
   </div>
+
+  {% comment %} <div class="slider">
+    <div class="slide-track">
+      
+      <a href="">
+        <div class="slide">
+          <img src="" width="250" alt="" />
+        </div>
+      </a>
+     
+    </div>
+  </div> {% endcomment %}
   <div class="slider">
     <div class="slide-track">
-      <a href="">
-        <div class="slide">
-          <img src="./images/th.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/publi.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/publi4.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/publi5.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/pink.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/pink.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/publi.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
-      <a href="">
-        <div class="slide">
-          <img src="./images/th.jfif" height="100" width="250" alt="" />
-        </div>
-      </a>
+      {% for publisher in publishers %}
+      <div class="slide">
+        <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" />
+      </div>
+      {% endfor %}
+      {% for publisher in publishers %}
+      <div class="slide">
+        <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" />
+      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
