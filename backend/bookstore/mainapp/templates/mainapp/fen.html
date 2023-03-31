@@ -239,25 +239,14 @@
     </div>
   </div>
 
-  {% comment %} <div class="slider">
-    <div class="slide-track">
-      
-      <a href="">
-        <div class="slide">
-          <img src="" width="250" alt="" />
-        </div>
-      </a>
-     
-    </div>
-  </div> {% endcomment %}
+  {% comment "slider for publisher houses" %}{% endcomment %}
   <div class="slider">
     <div class="slide-track">
       {% for publisher in publishers %}
       <div class="slide">
         <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" />
       </div>
-      {% endfor %}
-      {% for publisher in publishers %}
+      {% endfor %} {% for publisher in publishers %}
       <div class="slide">
         <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" />
       </div>
