@@ -49,8 +49,22 @@ rel="stylesheet" href="{% static "mainapp/css/secondpage.css" %}"> {% endblock%}
                 </li>
               </ul>
               <div class="buy text-center">
-                <button>Add to Card</button>
-                <button>Instant purchase</button>
+                <button
+                  href="{% url 'mainapp:cart-add' book.id %}"
+                  class="update-cart"
+                  type="submit"
+                  data-product="{{book.id}}"
+                  data-action="add"
+                >
+                  Add to Cart
+                </button>
+                <button
+                  href="{% url 'mainapp:wishlist-add' book.id %}"
+                  class=""
+                  type="submit"
+                >
+                  Add to Wishlist
+                </button>
               </div>
               <!-- end of book information  -->
             </div>
