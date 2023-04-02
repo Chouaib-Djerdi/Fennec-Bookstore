@@ -6,13 +6,11 @@ function fetchComments(bookId) {
     .then((data) => {
       data.forEach((comment) => {
         const commentCard = `
-        <div class="container my-5 py-5 text-dark">
-            <div class="row d-flex justify-content-center">
-            <div class="col-md-11 col-lg-9 col-xl-7">
-              <div class="d-flex flex-start mb-4">
+        
+              <div class="d-flex flex-start mb-4 p-3">
                 <img
                   class="rounded-circle shadow-1-strong me-3"
-                  src="${comment.user.avatar}"
+                  src="http://127.0.0.1:8000/static/mainapp/images/Default-PFP.jpg"
                   alt="avatar"
                   width="65"
                   height="65"
