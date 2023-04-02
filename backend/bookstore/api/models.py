@@ -8,8 +8,8 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    likes = models.ManyToManyField(User, related_name='comment_likes')
-    dislikes = models.ManyToManyField(User, related_name='comment_dislikes')
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
     
     def __str__(self):
         return f'{self.user.username}\'s comment on {self.book.title}'

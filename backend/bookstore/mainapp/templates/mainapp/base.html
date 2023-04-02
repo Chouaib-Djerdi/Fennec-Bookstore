@@ -83,69 +83,12 @@
     <script src="{% static 'mainapp/js/cart.js' %}"></script>
     <script src="{% static 'mainapp/js/custom.js' %}"></script>
     {% comment "COMMENT SCRIPT" %}{% endcomment %}
+
+    <script src="{% static 'mainapp/js/comments.js' %}"></script>
     <script>
-            // Get the HTML elements
-      const commentListElement = document.getElementById('comment-list');
-      const bookId = {{ book.id }};
-
-      // Function to display the comments
-      function displayComments() {
-        // Make a GET request to the comments endpoint for the current book
-        fetch(`/api/books/${bookId}/comments/`)
-          .then(response => response.json())
-          .then(data => {
-            // Clear the comment list
-            commentListElement.innerHTML = '';
-
-            // Loop through each comment in the response data
-            data.forEach(comment => {
-              // Create a new HTML element for the comment
-              const commentElement = document.createElement('div');
-              commentElement.classList.add('comment');
-
-              // Set the inner HTML of the comment element
-              commentElement.innerHTML = `
-                <div class="comment-header">
-                  <h5>${comment.user.username}</h5>
-                </div>
-                <div class="comment-body">
-                  ${comment.content}
-                </div>
-                <div class="comment-actions">
-                  <button class="like-button" data-comment-id="${comment.id}">
-                    Like (${comment.likes})
-                  </button>
-                  <button class="dislike-button" data-comment-id="${comment.id}">
-                    Dislike (${comment.dislikes})
-                  </button>
-                  {% if user.is_authenticated and user == comment.user %}
-                    <button class="delete-button" data-comment-id="${comment.id}">
-                      Delete
-                    </button>
-                    <button class="edit-button" data-comment-id="${comment.id}">
-                      Edit
-                    </button>
-                  {% endif %}
-                </div>
-              `;
-
-              // Add the comment element to the comment list
-              commentListElement.appendChild(commentElement);
-
-              // Add event listeners to the like and dislike buttons
-              const likeButton = commentElement.querySelector('.like-button');
-              const dislikeButton = commentElement.querySelector('.dislike-button');
-              likeButton.addEventListener('click', () => likeComment(comment.id));
-              dislikeButton.addEventListener('click', () => dislikeComment(comment.id));
-            });
-          })
-          .catch(error => console.log(error));
-      }
-
-      // Call the displayComments function to initially display the comments
-      displayComments();
+      const bookId = {{book.id}};
+      fetchComments(bookId);
     </script>
-
     {% comment "Fontawesome api script for icons" %}{% endcomment %}
     <script
       src="https://kit.fontawesome.com/5bb5e7c63d.js"
