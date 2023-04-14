@@ -6,7 +6,7 @@ function fetchComments(bookId) {
     .then((data) => {
       data.forEach((comment) => {
         const commentCard = `
-        
+
               <div class="d-flex flex-start mb-4 p-3">
                 <img
                   class="rounded-circle shadow-1-strong me-3"
@@ -23,7 +23,7 @@ function fetchComments(bookId) {
                         comment.created_at
                       ).toLocaleString()}</p>
                       <p>${comment.content}</p>
-  
+
                       <div
                         class="d-flex justify-content-between align-items-center"
                       >
