@@ -56,3 +56,21 @@ function fetchComments(bookId) {
     })
     .catch((error) => console.error(error));
 }
+
+function createComment(bookId, content) {
+  fetch(`/api/books/${bookId}/comments/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify({ book: bookId, content }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const commentSection = document.querySelector("#comments");
+      const commentCard = createCommentCard(data);
+      commentSection.insertAdjacentHTML("beforeend", commentCard);
+    })
+    .catch((error) => console.error(error));
+}
