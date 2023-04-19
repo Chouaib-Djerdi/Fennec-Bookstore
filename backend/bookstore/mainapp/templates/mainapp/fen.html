@@ -7,6 +7,13 @@
         <h1>
           Your favourite place to<br /><span style="color: #fea82f">read</span>
         </h1>
+        <h6>  
+             
+          Visitez 
+          <a href="#my-location">notre bibliothèque    &nbsp  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-europe-africa" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM3.668 2.501l-.288.646a.847.847 0 0 0 1.479.815l.245-.368a.809.809 0 0 1 1.034-.275.809.809 0 0 0 .724 0l.261-.13a1 1 0 0 1 .775-.05l.984.34c.078.028.16.044.243.054.784.093.855.377.694.801-.155.41-.616.617-1.035.487l-.01-.003C8.274 4.663 7.748 4.5 6 4.5 4.8 4.5 3.5 5.62 3.5 7c0 1.96.826 2.166 1.696 2.382.46.115.935.233 1.304.618.449.467.393 1.181.339 1.877C6.755 12.96 6.674 14 8.5 14c1.75 0 3-3.5 3-4.5 0-.262.208-.468.444-.7.396-.392.87-.86.556-1.8-.097-.291-.396-.568-.641-.756-.174-.133-.207-.396-.052-.551a.333.333 0 0 1 .42-.042l1.085.724c.11.072.255.058.348-.035.15-.15.415-.083.489.117.16.43.445 1.05.849 1.357L15 8A7 7 0 1 1 3.668 2.501Z"/>
+          </svg> <style>.first a{color: #fea82f;}</style></a>
+        </h6>
 
         <form
           class="form-inline"
@@ -44,6 +51,10 @@
     <div class="col-lg-3 text-center col-sm-6 text-center col-6 text-center">
       <a href="{% url 'mainapp:book-detail' book.id %}">
         <div class="card border-0 align-items-center">
+          <div class="heart-container">
+            <span class="heart">&#10084;</span>
+            <span class="wish-list-text">Add to wish list</span>
+          </div>
           <div class="card-body">
             <img src="{{book.cover.url}}" alt="" />
             <div class="row py-2">
@@ -51,7 +62,26 @@
                 <a href=""><b> {{book.title}}</b></a>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-12">
-                <a href=""> <h6>{{book.price}} DA</h6></a>
+                <a href=""> <h6  > {{book.price}} DA </h6></a>
+                 <a href=""> <i class="bi bi-bag-plus-fill "></i> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                  </svg></a><style>
+          
+       
+  .book i,
+  .book svg:hover {
+  color: #fea82f;
+}
+
+
+
+
+
+
+
+
+                  </style>
+               
               </div>
             </div>
             <a class="writer px-1" href="">{{book.author}} </a>
@@ -181,13 +211,37 @@
       <div class="col-lg-2 col-md-3 col-sm-6 col-6 my-3">
         <a href="{% url 'mainapp:book-detail' book.id %}">
           <div class="card">
+            
             <div class="img-container">
               <img src="{{book.cover.url}}" alt="" />
             </div>
             <div class="card-details">
+              <div class="heart-container mx-2">
+                <span class="heart">&#10084;</span>
+                <span class="wish-list-text">Add to wish list</span>
+              </div>
               <h2>{{book.title}}</h2>
               <p>{{book.author}}</p>
-              <h6>{{book.price}} DA</h6>
+              <h6  > {{book.price}} DA </h6>
+               <i class="bi bi-bag-plus-fill "></i> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+               </svg><style>
+          
+          .Recent a{
+                color: black;
+              }
+              
+                .Recent i,
+                .Recent svg:hover {
+                color: #fea82f;
+              }
+          
+              
+              
+              
+              
+              
+                                </style>
             </div>
           </div>
         </a>
@@ -215,9 +269,16 @@
                 <img src="{{book.cover.url}}" alt="" />
               </div>
               <div class="card-details">
+                <div class="heart-container mx-2">
+                  <span class="heart">&#10084;</span>
+                  <span class="wish-list-text">Add to wish list</span>
+                </div>
                 <h2>{{book.title}}</h2>
                 <p>{{book.author}}</p>
                 <h6>{{book.price}} DA</h6>
+                <i class="bi bi-bag-plus-fill "></i> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                </svg>
               </div>
             </div>
           </a>
@@ -244,11 +305,13 @@
     <div class="slide-track">
       {% for publisher in publishers %}
       <div class="slide">
-        <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" />
+        <a href="">
+        <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" /></a>
       </div>
       {% endfor %} {% for publisher in publishers %}
       <div class="slide">
-        <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" />
+        <a href="">
+        <img src="{{publisher.img_cap.url}}" height="100" width="250" alt="" /></a>
       </div>
       {% endfor %}
     </div>

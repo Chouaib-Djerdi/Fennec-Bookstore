@@ -2,10 +2,15 @@
   margin: 0;
   padding: 0;
 }
+.navbar .row{
+  width: 100%;
+}
 
 a {
   text-decoration: none;
+ 
 }
+
 
 .container1 {
   background-color: #ffffff;
@@ -26,21 +31,69 @@ body {
 
 .navbar {
   background: #fcecdd;
-  padding: 0;
+ 
 }
 
-.navbar-brand img {
+
+.nav1 form button{
+  background-color: #fea82f;
+  color: white;
+}
+.nav1 .dropdown-menu{
+  z-index: 10001;
+
+}
+
+
+.nav1 form{
+  
+  width: 100%;
+}
+.nav1 form input{
+  width: 100%;
+}
+
+
+.nav1 .navbar-brand img {
   height: 6rem;
   width: 8rem;
-  padding-left: 0rem;
-  margin-left: 0;
+
 }
 
-.nav-link {
-  margin-right: 60px;
-  font-size: 18px;
+.nav1 .navbar-brand  {
+ 
+  margin: auto;
+
 }
 
+.nav1 .nav-link {
+  
+  font-size: 100%;
+
+}
+@media only screen and (max-width: 1000px) {
+  .nav1 .navbar button{
+    display: none;
+  
+  }
+ 
+  .nav1 .navbar-brand img {
+    height: 4rem;
+    width: 5rem;
+  
+  }
+  
+.nav1 form{
+  margin-left: 15%;
+  width: 100%;
+}
+.nav1 .nav-link {
+  
+  font-size: 85%;
+
+}
+
+}
 .hover-underline-animation {
   display: inline-block;
   position: relative;
@@ -193,6 +246,43 @@ body {
   border: 2px solid #fea82f;
   width: 90px;
 }
+
+.heart-container {
+  position: absolute;
+  top: 10px;
+  left: 3%;
+  display: flex;
+  align-items: center;
+}
+
+.heart {
+  font-size: 100%;
+  color: grey;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.heart:hover{
+  color:#ff4d00;
+}
+
+.wish-list-text {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff4d00;
+  border-radius: 18px;
+  padding: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.heart:hover + .wish-list-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 
 .book h6:hover {
   background: #fea82f;
@@ -359,9 +449,14 @@ body {
   margin: auto;
   overflow: hidden;
   position: relative;
-  width: 960px;
+  width: 80%;
 }
-
+.slider .slide{
+  width: 25%;
+}
+.slider .slide img{
+  width: 60%
+}
 .slider::before,
 .slider::after {
   background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
