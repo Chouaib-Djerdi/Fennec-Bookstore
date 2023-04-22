@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions,status
 from rest_framework.response import Response
-from .serializers import BookSerializer,CommentSerializer
+from .serializers import BookSerializer,CommentSerializer,RatingSerializer
 from mainapp.models import Book
-from.models import Comment
+from.models import Comment,Rating
 
 # Create your views here.
 class BookListView(generics.ListAPIView):
@@ -60,3 +60,9 @@ class CommentUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+    
+
+class RatingListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = RatingSerializer
+    queryset = Rating.objects.all()
+    permission_classes = [permissions.IsAuthenticated]

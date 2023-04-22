@@ -2,6 +2,9 @@ from django.db import models
 from django.core.validators import MaxValueValidator,MinValueValidator
 import os
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
+
+# from comment.models import Comment
 
 def get_book_cover_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/book_covers/book_<id>/<filename>
@@ -62,6 +65,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=15,decimal_places=2,default=00.00)
     # rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     author = models.ForeignKey(Author, on_delete=models.SET_NULL,null=True, blank=True)
+    # comments = GenericRelation(Comment)
 
     def __str__(self):
         return self.title
