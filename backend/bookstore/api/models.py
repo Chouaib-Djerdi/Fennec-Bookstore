@@ -5,18 +5,6 @@ from mainapp.models import Book
 # Create your models here.
 
 class Comment(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    book = models.ForeignKey(Book,on_delete=models.CASCADE, related_name="comments")
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    likes = models.PositiveIntegerField(default=0)
-    dislikes = models.PositiveIntegerField(default=0)
-    
-    def __str__(self):
-        return f'{self.user.username}\'s comment on {self.book.title}'
-
-class Rating(models.Model):
     BOOK_RATING_CHOICES = [
         (1, '1 star'),
         (2, '2 stars'),
@@ -24,7 +12,16 @@ class Rating(models.Model):
         (4, '4 stars'),
         (5, '5 stars'),
     ]
-    
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.IntegerField(choices=BOOK_RATING_CHOICES)
+
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
+    rating = models.IntegerField(choices=BOOK_RATING_CHOICES, blank=True,null=True)
+
+    def __str__(self):
+        return f'{self.user.username}\'s comment on {self.book.title}'
+

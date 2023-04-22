@@ -38,14 +38,29 @@ function createCommentCard(comment) {
 function fetchComments(bookId) {
   const commentSection = document.querySelector("#comment-section");
   const commentForm = document.querySelector("#add-comment-form");
+  const ratingStars = document.querySelectorAll(
+    ".star-container input[type='radio']"
+  );
 
   commentForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const content = document.querySelector("#comment-content").value;
-    createComment(bookId, content);
+    const rating = document.querySelector(
+      ".star-container input[type='radio']:checked"
+    ).value;
+    console.log(`Content: ${content}, Rating: ${rating}`);
+    createComment(bookId, content, rating);
+    console.log("Comment created!");
     commentForm.reset();
   });
 
+  ratingStars.forEach((star) => {
+    star.addEventListener("change", () => {
+      console.log("Star rating changed!");
+      const ratingValue = star.value;
+      console.log(`User selected ${ratingValue} stars`);
+    });
+  });
   fetch(`/api/books/${bookId}/comments/`)
     .then((response) => response.json())
     .then((data) => {
@@ -57,17 +72,18 @@ function fetchComments(bookId) {
     .catch((error) => console.error(error));
 }
 
-function createComment(bookId, content) {
+function createComment(bookId, content, rating) {
   fetch(`/api/books/${bookId}/comments/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "X-CSRFToken": csrftoken,
     },
-    body: JSON.stringify({ book: bookId, content }),
+    body: JSON.stringify({ book: bookId, content, rating }),
   })
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       const commentSection = document.querySelector("#comment-section");
       const commentCard = createCommentCard(data);
       commentSection.insertAdjacentHTML("beforeend", commentCard);
