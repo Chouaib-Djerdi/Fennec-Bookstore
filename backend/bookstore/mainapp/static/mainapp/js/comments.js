@@ -8,13 +8,22 @@ function createCommentCard(comment) {
         width="65"
         height="65"
       />
+      
       <div class="card w-100">
         <div class="card-body p-4">
           <div class="">
             <h5>${comment.user.username}</h5>
-            <p class="small">${new Date(
-              comment.created_at
-            ).toLocaleString()}</p>
+            <div class="ml-auto">
+              <p class="small">${new Date(
+                comment.created_at
+              ).toLocaleString()}</p>
+            </div>
+            <div>
+                            <p class="text-left"><span class="text-muted">${
+                              comment.rating
+                            }.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
+            </div>
+            
             <p>${comment.content}</p>
 
             <div class="d-flex justify-content-between align-items-center">
@@ -85,8 +94,61 @@ function createComment(bookId, content, rating) {
     .then((data) => {
       console.log(data);
       const commentSection = document.querySelector("#comment-section");
+      // added recent
+      const existingComment = getExistingComment(bookId);
+
+      // If a comment already exists, update the existing comment
+      if (existingComment) {
+        updateComment(bookId, existingComment.id, content, rating);
+        return;
+      }
+      // added recent
+
       const commentCard = createCommentCard(data);
       commentSection.insertAdjacentHTML("beforeend", commentCard);
+
+      // added recent
+
+      // Save the comment to localStorage
+      saveComment(bookId, data.id, content, rating);
+
+      // added recent
+    })
+
+    .catch((error) => console.error(error));
+}
+
+function getExistingComment(bookId) {
+  const comments = JSON.parse(localStorage.getItem("comments")) || {};
+  return comments[bookId] || null;
+}
+
+function updateComment(bookId, commentId, content, rating) {
+  fetch(`/api/books/${bookId}/comments/${commentId}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify({ content, rating }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Update the existing comment in the DOM
+      const commentCard = document.querySelector(`#comment-${data.id}`);
+      commentCard.querySelector(".comment-content").textContent = data.content;
+      commentCard.querySelector(
+        ".comment-rating"
+      ).textContent = `(${data.rating} stars)`;
+
+      // Update the comment in localStorage
+      saveComment(bookId, commentId, content, rating);
     })
     .catch((error) => console.error(error));
+}
+
+function saveComment(bookId, commentId, content, rating) {
+  const comments = JSON.parse(localStorage.getItem("comments")) || {};
+  comments[bookId] = { id: commentId, content, rating };
+  localStorage.setItem("comments", JSON.stringify(comments));
 }

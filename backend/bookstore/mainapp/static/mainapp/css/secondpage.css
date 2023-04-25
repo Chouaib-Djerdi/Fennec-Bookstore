@@ -285,8 +285,6 @@ input[name="star"]:checked + label {
   margin-top: 100px;
 }
 
-
-
 #full-stars-example .rating-group {
   display: inline-flex;
 }
@@ -352,3 +350,20 @@ input[name="star"]:checked + label {
 }
 
 /*# sourceMappingURL=../css/rate.css.map */
+
+.star-active {
+  color: #fbc02d;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.star-active:hover {
+  color: #f9a825;
+  cursor: pointer;
+}
+
+.star-inactive {
+  color: #cfd8dc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
