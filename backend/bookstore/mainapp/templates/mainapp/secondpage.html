@@ -1,17 +1,14 @@
-{% extends 'mainapp/navbar.html' %}{% load static %} {% block extrahead %} <link
-rel="stylesheet" href="{% static 'mainapp/css/secondpage.css' %}"> {% endblock%}
-{% block content2 %}
+{% extends 'mainapp/navbar.html' %}{% load static %} {% block extrahead %}
+<link rel="stylesheet" href="{% static 'mainapp/css/secondpage.css' %}" />
+{%endblock%} {% block content2 %}
 <div class="container my-5">
   <section class="description">
     <section class="description">
       <!-- start of the title  -->
-       <div class="booktitlep text-center py-4">
-    <h2>Harry Potter And The Chamber Of Secrets </h2>
-    <p>By <a href="">writer of the book</a> </p>
-    
- 
-
-</div>
+      <div class="booktitlep text-center py-4">
+        <h2>Harry Potter And The Chamber Of Secrets</h2>
+        <p>By <a href="">writer of the book</a></p>
+      </div>
       <div class="row ">
         <div
           class="col-lg-6 text-center col-md-6 text-center col-sm-12 text-center"
@@ -80,65 +77,134 @@ rel="stylesheet" href="{% static 'mainapp/css/secondpage.css' %}"> {% endblock%}
       </div>
       <!-- end of the book  -->
       <!-- rate start  -->
-      <div class="rat text-center">
-        <b class="text-center">Rate this book</b>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="ratingModal"
+        tabindex="-1"
+        aria-labelledby="ratingModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ratingModalLabel">
+                Add a comment and rating
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex flex-start w-100">
+                <img
+                  class="rounded-circle shadow-1-strong me-3"
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
+                  alt="avatar"
+                  width="65"
+                  height="65"
+                />
+                <div class="w-100">
+                  <div class="rat text-center">
+                    <b class="text-center">Rate this book</b>
+                  </div>
+                  <div class="star-source">
+                    <svg>
+                      <linearGradient
+                        x1="50%"
+                        y1="5.41294643%"
+                        x2="87.5527344%"
+                        y2="65.4921875%"
+                        id="grad"
+                      >
+                        <stop stop-color="#FEA82F" offset="0%"></stop>
+                        <stop stop-color="#FEA82F" offset="60%"></stop>
+                        <stop stop-color="#FEA82F" offset="100%"></stop>
+                      </linearGradient>
+                      <symbol id="star" viewBox="153 89 106 108">
+                        <polygon
+                          id="star-shape"
+                          stroke="url(#grad)"
+                          stroke-width="5"
+                          fill="currentColor"
+                          points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"
+                        ></polygon>
+                      </symbol>
+                    </svg>
+                  </div>
+                  <div class="star-container">
+                    <input type="radio" name="star" id="five" value="5" />
+                    <label for="five">
+                      <svg class="star">
+                        <use xlink:href="#star" />
+                      </svg>
+                    </label>
+                    <input type="radio" name="star" id="four" value="4" />
+                    <label for="four">
+                      <svg class="star">
+                        <use xlink:href="#star" />
+                      </svg>
+                    </label>
+                    <input type="radio" name="star" id="three" value="3" />
+                    <label for="three">
+                      <svg class="star">
+                        <use xlink:href="#star" />
+                      </svg>
+                    </label>
+                    <input type="radio" name="star" id="two" value="2" />
+                    <label for="two">
+                      <svg class="star">
+                        <use xlink:href="#star" />
+                      </svg>
+                    </label>
+                    <input type="radio" name="star" id="one" value="1" />
+                    <label for="one">
+                      <svg class="star">
+                        <use xlink:href="#star" />
+                      </svg>
+                    </label>
+                  </div>
+
+                  <form class="form-floating" id="add-comment-form">
+                    <textarea
+                      class="form-control"
+                      placeholder="Leave a comment here"
+                      id="comment-content"
+                      style="height: 150px"
+                    ></textarea>
+                    <label for="comment-content">What is your view?</label>
+                    <br />
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="star-source">
-        <svg>
-          <linearGradient
-            x1="50%"
-            y1="5.41294643%"
-            x2="87.5527344%"
-            y2="65.4921875%"
-            id="grad"
-          >
-            <stop stop-color="#FEA82F" offset="0%"></stop>
-            <stop stop-color="#FEA82F" offset="60%"></stop>
-            <stop stop-color="#FEA82F" offset="100%"></stop>
-          </linearGradient>
-          <symbol id="star" viewBox="153 89 106 108">
-            <polygon
-              id="star-shape"
-              stroke="url(#grad)"
-              stroke-width="5"
-              fill="currentColor"
-              points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"
-            ></polygon>
-          </symbol>
-        </svg>
+      <div class="text-center">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#ratingModal"
+        >
+          Add your rating opinion
+        </button>
       </div>
-      <div class="star-container">
-        <input type="radio" name="star" id="five" />
-        <label for="five">
-          <svg class="star">
-            <use xlink:href="#star" />
-          </svg>
-        </label>
-        <input type="radio" name="star" id="four" />
-        <label for="four">
-          <svg class="star">
-            <use xlink:href="#star" />
-          </svg>
-        </label>
-        <input type="radio" name="star" id="three" />
-        <label for="three">
-          <svg class="star">
-            <use xlink:href="#star" />
-          </svg>
-        </label>
-        <input type="radio" name="star" id="two" />
-        <label for="two">
-          <svg class="star">
-            <use xlink:href="#star" />
-          </svg>
-        </label>
-        <input type="radio" name="star" id="one" />
-        <label for="one">
-          <svg class="star">
-            <use xlink:href="#star" />
-          </svg>
-        </label>
-      </div>
+
       <!-- end rate  -->
       <section class="Recent">
         <div class="container my-4">
@@ -165,22 +231,12 @@ rel="stylesheet" href="{% static 'mainapp/css/secondpage.css' %}"> {% endblock%}
       <div id="comment-list"></div>
     </section>
     <h3>See other readers ratings :</h3>
+
     <section class="comments">
       <div class="container text-dark">
         <div class="row d-flex justify-content-center">
           <div class="col-md-11 col-lg-9 col-xl-7">
             <h3>Comments</h3>
-            <form id="add-comment-form" class="mt-4 mb-4">
-              <div class="form-group">
-                <textarea
-                  class="form-control"
-                  id="comment-content"
-                  rows="3"
-                  placeholder="Add a comment"
-                ></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
 
             <div id="comment-section"></div>
           </div>
