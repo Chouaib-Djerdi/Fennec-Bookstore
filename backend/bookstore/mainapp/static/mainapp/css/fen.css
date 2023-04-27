@@ -2,15 +2,13 @@
   margin: 0;
   padding: 0;
 }
-.navbar .row{
+.navbar .row {
   width: 100%;
 }
 
 a {
   text-decoration: none;
- 
 }
-
 
 .container1 {
   background-color: #ffffff;
@@ -31,68 +29,52 @@ body {
 
 .navbar {
   background: #fcecdd;
- 
 }
 
-
-.nav1 form button{
+.nav1 form button {
   background-color: #fea82f;
   color: white;
 }
-.nav1 .dropdown-menu{
+.nav1 .dropdown-menu {
   z-index: 10001;
-
 }
 
-
-.nav1 form{
-  
+.nav1 form {
   width: 100%;
 }
-.nav1 form input{
+.nav1 form input {
   width: 100%;
 }
-
 
 .nav1 .navbar-brand img {
   height: 6rem;
   width: 8rem;
-
 }
 
-.nav1 .navbar-brand  {
- 
+.nav1 .navbar-brand {
   margin: auto;
-
 }
 
 .nav1 .nav-link {
-  
   font-size: 100%;
-
 }
 @media only screen and (max-width: 1000px) {
-  .nav1 .navbar button{
+  .nav1 .navbar button {
     display: none;
-  
   }
- 
+
   .nav1 .navbar-brand img {
     height: 4rem;
     width: 5rem;
-  
   }
-  
-.nav1 form{
-  margin-left: 15%;
-  width: 100%;
-}
-.nav1 .nav-link {
-  
-  font-size: 85%;
 
-}
-
+  .nav1 form {
+    margin-left: 15%;
+    width: 100%;
+  }
+  .nav1 .nav-link {
+    font-size: 85%;
+  }
 }
 .hover-underline-animation {
   display: inline-block;
@@ -261,8 +243,8 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
-.heart:hover{
-  color:#ff4d00;
+.heart:hover {
+  color: #ff4d00;
 }
 
 .wish-list-text {
@@ -282,7 +264,6 @@ body {
   opacity: 1;
   transform: translateX(0);
 }
-
 
 .book h6:hover {
   background: #fea82f;
@@ -451,11 +432,11 @@ body {
   position: relative;
   width: 80%;
 }
-.slider .slide{
+.slider .slide {
   width: 25%;
 }
-.slider .slide img{
-  width: 60%
+.slider .slide img {
+  width: 60%;
 }
 .slider::before,
 .slider::after {
@@ -488,36 +469,6 @@ body {
   height: 100px;
   width: 250px;
 }
-
-/* @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(calc(-250px * 7));
-  }
-}
-
-.slider {
-  height: 400px;
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  width: auto;
-  margin-top: 3.5rem;
-}
-
-.slider .slide-track {
-  animation: scroll 18s linear infinite;
-  display: flex;
-  width: calc(250px * 14);
-}
-
-.slider .slide {
-  height: 100px;
-  width: 250px;
-} */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
@@ -739,4 +690,10 @@ body {
 .titles h1:before,
 .titles h1:after {
   background-color: #c50000;
+}
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
 }
