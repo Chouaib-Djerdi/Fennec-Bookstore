@@ -1,13 +1,10 @@
 {% extends 'mainapp/base.html' %}{% load static %} {% block content %}
-<div class="container1">
+<div class="container1 text-center">
   <div class="nav1">
   <nav class="navbar navbar-expand">
     <div class="container-fluid">
-<<<<<<< HEAD
       <div class="row align-items-center text-center">
         <div class="col-lg-4 col-4">
-=======
->>>>>>> f8b8f9010888528274a0722779138e7154fd516f
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
           <a
@@ -47,7 +44,6 @@
             </li>
           </ul>
         </li>
-<<<<<<< HEAD
       </ul></div>
       <div class="col-lg-4 text-center col-4 ">
 
@@ -55,13 +51,6 @@
         ><img src="{% static 'mainapp/images/fn.png' %}" alt=""
       /></a></div>
       <div class="col-lg-4 col-4">
-=======
-      </ul>
-
-      <a class="navbar-brand" href="{% url 'mainapp:main-page' %}"
-        ><img src="{% static 'mainapp/images/fn.png' %}" alt=""
-      /></a>
->>>>>>> f8b8f9010888528274a0722779138e7154fd516f
       <form
         class="d-flex"
         role="search"
@@ -77,12 +66,8 @@
           name="searched"
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
-<<<<<<< HEAD
       </form></div></div>
       
-=======
-      </form>
->>>>>>> f8b8f9010888528274a0722779138e7154fd516f
     </div>
   </nav></div>
   
@@ -116,10 +101,50 @@
               >Bibliothèque</a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link active hover-underline-animation" href="#"
-              >Categories</a
-            >
+          <li class="nav-item dropdown dropdown-hover position-static">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-mdb-toggle="dropdown" aria-expanded="false">
+              Catégories
+            </a>
+            <!-- Dropdown menu -->
+            <div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown" style="border-top-left-radius: 0;
+                              border-top-right-radius: 0;
+                            ">
+  
+              <div class="container">
+                <div class="row my-4">
+                  <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="list-group list-group-flush">
+                      <a href="" class="list-group-item list-group-item-action"> finnance </a>
+                      <a href="" class="list-group-item list-group-item-action">riwayat</a>
+                      <a href="" class="list-group-item list-group-item-action">akchen</a>
+             
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="list-group list-group-flush">
+                      <a href="" class="list-group-item list-group-item-action"> finnance </a>
+                      <a href="" class="list-group-item list-group-item-action">riwayat</a>
+                      <a href="" class="list-group-item list-group-item-action">akchen</a>
+             
+                    </div>
+                  </div>
+                  
+             
+             
+                  <div class="col-md-6 col-lg-4 mb-3 mb-lg-0 ">
+                    <div class="list-group list-group-flush">
+                      <a href="" class="list-group-item list-group-item-action">comedy</a>
+                      <a href="" class="list-group-item list-group-item-action">horror</a>
+                      <a href="" class="list-group-item list-group-item-action">technology</a>
+                      
+                    </div>
+                  </div>
+                  
+                
+                </div>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link active hover-underline-animation" href="#"

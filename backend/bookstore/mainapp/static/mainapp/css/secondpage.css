@@ -1,5 +1,5 @@
 .description {
-  margin-top: 110px;
+  margin-top: 5%;
 }
 
 .description .imgcontainer img {
@@ -50,22 +50,19 @@
 
 @media only screen and (min-width: 767px) {
   .description .booktitlep {
-    visibility: hidden;
+    display: none;
   }
+
+  
+
 }
 
 .description .row {
-  margin-top: -70px;
+  margin-top: 0%;
 }
 
 @media only screen and (max-width: 767px) {
-  .description img {
-    max-height: 300px;
-  }
-
-  .description .row {
-    margin-top: -5px;
-  }
+ 
 
   .description .booktitlep h2 {
     color: #fea82f;
@@ -73,19 +70,16 @@
   }
 
   .description .booktitle {
-    visibility: hidden;
+    display: none;
+  }
+  .description .imgcontainer img {
+    width: 50%;
   }
 
-  .description .des {
-    margin-top: -15%;
-  }
+
 }
 
-@media only screen and (max-width: 547px) {
-  .description .des {
-    margin-top: -25%;
-  }
-}
+
 
 label {
   cursor: pointer;

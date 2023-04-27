@@ -9,7 +9,23 @@
 a {
   text-decoration: none;
  
+
 }
+
+.dropdown-hover:hover>.dropdown-menu {
+  display: inline-block;
+
+ 
+  }
+  .list-group-flush{
+    width: 200px;
+
+  }
+ 
+  .dropdown-hover>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+  }
 
 
 .container1 {
