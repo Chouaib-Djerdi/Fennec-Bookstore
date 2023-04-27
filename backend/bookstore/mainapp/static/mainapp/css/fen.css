@@ -192,7 +192,7 @@ body {
   }
 
   .first form {
-    width: 100%;
+    width: 80%;
     display: flex;
   }
 }
@@ -204,7 +204,14 @@ body {
 .book .row .col-lg-3 h6 {
   margin: auto;
 }
+.book .row .col-lg-3 h6:hover{
+  font-size: 0px;
+}
+.book .row .col-lg-3 h6:hover::after{
+  content: attr(data-hover);
+  font-size: 14px;
 
+}
 .book {
   padding-top: 60px;
 }
