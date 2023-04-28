@@ -1,9 +1,9 @@
-{% extends 'mainapp/navbar.html' %} {% block content2 %}
-
-{% comment %} <form method="POST">
+{% extends 'mainapp/navbar.html' %} {% block content2 %} {% comment %}
+<form method="POST">
   {% csrf_token %} {{form.as_p}}
   <button type="submit">Register</button>
-</form> {% endcomment %}
+</form>
+{% endcomment %}
 <section class="vh-100" style="background-color: #fcecdd">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -17,8 +17,7 @@
                 </p>
 
                 <form class="mx-1 mx-md-4" method="POST">
-                  {% csrf_token %}
-                  {{ form.as_p }}
+                  {% csrf_token %} {{ form.as_p }}
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button type="submit" class="btn btn-dark btn-lg">
