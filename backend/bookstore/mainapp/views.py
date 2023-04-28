@@ -110,7 +110,9 @@ def remove_from_wishlist(request, pk):
 
 @login_required
 def add_to_cart(request,pk):
-    cart, created = models.Order.objects.get_or_create(customer=request.user)
+    user = request.user
+    customer, created = models.Customer.objects.get_or_create(user=user)
+    cart, created = models.Order.objects.get_or_create(customer=customer)
     book = get_object_or_404(models.Book, pk=pk)
     order_item, created = models.OrderItem.objects.get_or_create(product=book,order=cart)
     order_item.save()
@@ -151,6 +153,7 @@ def updateitem(request):
     
     if action == 'add':
         orderitem.quantity = (orderitem.quantity + 1)
+        
     elif action == 'remove':
         orderitem.quantity = (orderitem.quantity - 1)
 

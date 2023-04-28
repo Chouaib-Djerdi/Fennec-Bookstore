@@ -1,182 +1,95 @@
 {% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
-{%comment %}
-<div class="container">
-  {% if cart_items %}
 
-  <ul class="list-group">
-    <h3>Cart Items :</h3>
-    <button type="button" class="btn btn-primary my-1">
-      Your Number of items is
-      <span class="badge badge-light">{{cart.get_cart_items}}</span>
-    </button>
+<section class="h-100 h-custom">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="h5">Shopping Bag</th>
 
-    {% for item in cart_items %}
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in cart_items %}
+                  <tr>
+                    <th scope="row">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="{{item.product.cover.url}}"
+                          class="img-fluid rounded-3"
+                          style="width: 120px"
+                          alt="Book"
+                        />
+                        <div class="flex-column ms-4">
+                          <p class="mb-2">{{item.product.title}}</p>
+                          <p class="mb-0">{{item.product.author.name}}</p>
+                        </div>
+                      </div>
+                    </th>
 
-    <li class="list-group-item">
-      <div class="d-flex">
-        <img
-          src="{{item.product.cover.url}}"
-          class="cover-snippet mx-1"
-          alt=""
-        />
-        <a
-          href="{% url 'mainapp:book-detail' item.product.id %}"
-          class="mr-auto"
-          ><strong>{{item.product.title}} </strong></a
-        >
+                    <td class="align-middle">
+                      <div class="d-flex flex-row">
+                        <button
+                          data-product="{{item.product.id}}"
+                          data-action="remove"
+                          class="btn btn-link px-2 update-cart"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
 
-        <strong class="mx-1">{{item.get_total}}</strong>
-        <strong class="mx-1">{{item.product.price}}</strong>
+                        <input
+                          id="form1"
+                          min="0"
+                          name="quantity"
+                          value="{{item.quantity}}"
+                          type="number"
+                          class="form-control form-control-sm"
+                          style="width: 50px"
+                        />
 
-        <div class="counter">
-          <div
-            class="arrow-up increase"
-            id="arrow-up"
-            data-product="{{item.product.id}}"
-            data-action="plus"
-          ></div>
-          <div class="quantity">
-            <input
-              type="number"
-              id="quantity"
-              value="1"
-              data-product="{{item.product.id}}"
-            />
+                        <button
+                          data-product="{{item.product.id}}"
+                          data-action="add"
+                          class="btn btn-link px-2 update-cart"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <p class="mb-0" style="font-weight: 500">
+                        ${{item.product.price}}
+                      </p>
+                    </td>
+                    <td class="align-middle">
+                      <p class="mb-0" style="font-weight: 500">
+                        ${{item.get_total}}
+                      </p>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div
-            class="arrow-down increase"
-            id="arrow-down"
-            data-product="{{item.product.id}}"
-            data-action="minus"
-          ></div>
         </div>
-        <form
-          method="POST"
-          action="{% url 'mainapp:cart-remove' item.product.id %}"
-        >
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger btn-sm ml-1">
-            <i class="fa-sharp fa-solid fa-trash-can"></i>
-          </button>
-        </form>
       </div>
-    </li>
-
-    {% endfor %}
-  </ul>
-  <button type="button" class="btn btn-primary my-1">
-    Your Total is <span class="badge badge-light">{{cart.get_cart_total}}</span>
-  </button>
-  {% else %}
-  <h1>Your cart is empty !!</h1>
-
-  {% endif %}
-</div>
-{% endcomment %} {% comment %}
-<div class="row">
-  <div class="col-lg-12">
-    <div class="box-element">
-      <br />
-      <br />
-      <table class="table">
-        <tr>
-          <th>
-            <h5>Items: <strong>{{cart.get_cart_items}}</strong></h5>
-          </th>
-          <th>
-            <h5>Total:<strong> ${{cart.get_cart_total}}</strong></h5>
-          </th>
-        </tr>
-      </table>
     </div>
-
-    <br />
-    <div class="box-element">
-      <div class="cart-row">
-        <div style="flex: 2"></div>
-        <div style="flex: 2"><strong>Item</strong></div>
-        <div style="flex: 1"><strong>Price</strong></div>
-        <div style="flex: 1"><strong>Quantity</strong></div>
-        <div style="flex: 1"><strong>Total</strong></div>
+    <div class="card my-2">
+      <div class="card-body">
+        <button type="button" class="btn btn-warning btn-lg w-100">
+          Proceed to Pay
+        </button>
       </div>
-      {% for item in cart_items %}
-      <div class="cart-row">
-        <div style="flex: 2">
-          <img class="row-image" src="{{item.product.cover.url}}" />
-        </div>
-        <div style="flex: 2"><p>{{item.product.title}}</p></div>
-        <div style="flex: 1"><p>${{item.product.price|floatformat:2}}</p></div>
-        <div style="flex: 1">
-          <p class="quantity">{{item.quantity}}</p>
-          <div class="quantity">
-            <img
-              data-product="{{item.product.id}}"
-              data-action="add"
-              class="chg-quantity update-cart"
-              src=""
-            />
-
-            <img
-              data-product="{{item.product.id}}"
-              data-action="remove"
-              class="chg-quantity update-cart"
-              src=""
-            />
-          </div>
-        </div>
-        <div style="flex: 1"><p>${{item.get_total|floatformat:2}}</p></div>
-      </div>
-      {% endfor %}
     </div>
   </div>
-</div>
-{% endcomment %}
-
-<div class="container">
-  <span class="badge badge-light">{{cart.get_cart_items}}</span>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">quantity</th>
-        <th scope="col">Item</th>
-        <th scope="col">Price</th>
-        <th scope="col">Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in cart_items %}
-      <tr>
-        <th scope="row">
-          <button
-            data-product="{{item.product.id}}"
-            data-action="add"
-            class="btn btn-dark btn-sm update-cart"
-          >
-            <span>&#8593;</span>
-          </button>
-          {{item.quantity}}
-          <button
-            data-product="{{item.product.id}}"
-            data-action="remove"
-            class="btn btn-dark btn-sm update-cart"
-          >
-            <span>&#8595;</span>
-          </button>
-        </th>
-        <td>
-          <div class="d-flex">
-            <img class="cover-snippet" src="{{item.product.cover.url}}" />
-            <strong>{{item.product.title}}</strong>
-          </div>
-        </td>
-        <td>{{item.product.price}}</td>
-        <td>${{item.get_total|floatformat:2}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <button type="button" class="btn btn-primary my-1">
-    Your Total is <span class="badge badge-light">{{cart.get_cart_total}}</span>
-  </button>
-</div>
+</section>
 {% endblock content2 %}
