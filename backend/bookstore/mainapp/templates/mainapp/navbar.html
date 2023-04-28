@@ -135,18 +135,7 @@
     </div>
   </nav>
   {% block content2 %}{% endblock content2 %}
-  <div class="text-center" id="my-location">
-    {% comment "GOOGLE MAP EMBED" %}{% endcomment %}
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.005154458105!2d5.408005115230268!3d36.19075648007875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f31553934d0bef%3A0x69b27700f6129f88!2z2YHZhtmDINmE2YTZg9iq2KggZmVubmVjIGJvb2tz!5e0!3m2!1sen!2sdz!4v1680182368639!5m2!1sen!2sdz"
-      width="60%"
-      height="320"
-      style="border: 0; margin-top: 4rem"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
-  </div>
+
   <footer class="footer">
     <ul class="social-icon">
       <li class="social-icon__item">
@@ -182,7 +171,18 @@
       <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
     </ul>
-
+    <div class="text-center" id="my-location">
+      {% comment "GOOGLE MAP EMBED" %}{% endcomment %}
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.005154458105!2d5.408005115230268!3d36.19075648007875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f31553934d0bef%3A0x69b27700f6129f88!2z2YHZhtmDINmE2YTZg9iq2KggZmVubmVjIGJvb2tz!5e0!3m2!1sen!2sdz!4v1680182368639!5m2!1sen!2sdz"
+        width="60%"
+        height="320"
+        style="border: 0; margin-top: 4rem"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
     <p>&copy;2023 Fennec Book | All Rights Reserved</p>
   </footer>
 </div>
