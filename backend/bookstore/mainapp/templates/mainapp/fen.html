@@ -84,35 +84,9 @@
               >
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12">
-              <a href=""> <h6>{{book.price}} DA</h6></a>
-              <a
-                href="{% url 'mainapp:cart-add' book.id %}"
-                class="update-cart"
-                type="submit"
-                data-product="{{book.id}}"
-                data-action="add"
-              >
-                <i class="bi bi-bag-plus-fill"></i>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-bag-plus-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"
-                  />
-                </svg>
-              </a>
-              <style>
-                .book i,
-                .book svg:hover {
-                  color: #fea82f;
-                }
-              </style>
+              <a href=""> <h6 data-hover="Quick Add">{{book.price}} DA</h6></a>
+            
+             
             </div>
           </div>
           <a class="writer px-1" href="">{{book.author}} </a>
