@@ -5,6 +5,76 @@ rel="stylesheet" href="{% static 'mainapp/css/bib.css' %}"> {% endblock%}
 <section class="first ">
   
 </section>
+
+
+<div class="filtercontainer align-items-center
+">
+  <div class="row align-items-center"  >
+    <div class="col-lg-3 col-md-12 align-items-center   "> <b style="font-size: 18px;
+    
+  
+
+  
+  " >Trier Par :</b>
+    </div>
+    <div class="col-lg-3 col-md-4"><div class="dropdown" >
+      <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        NEWEST
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div></div>
+    <div class="col-lg-3 col-md-4"><div class="dropdown" >
+      <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+       DATE 
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div></div>
+    <div class="col-lg-3 col-md-4" ><div class="dropdown" >
+      <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+       LISTE 
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div></div>
+    
+  </div>
+
+</div>
+<div class="row">
+  
+  <div class="col-lg-3 d-none d-lg-block">
+    <div class="cat">
+    <ul><li class="px-3" style="background-color: 	#967462;
+    color: white;
+    border-radius: 13px;">Tous Les Livres</li>
+      <li class="px-3" style="
+      background-color: #ebdcd0;
+      border-radius: 13px; color: black;">Categories</li>
+      <a href=""><li class="px-3">riwayat</li></a>
+      <a href=""><li class="px-3">finance</li></a>
+      <a href=""><li class="px-3">akchen</li></a>
+      <a href=""><li class="px-3">riwayat</li></a>
+      <a href=""><li class="px-3">finance</li></a>
+      <a href=""><li class="px-3">akchen</li></a>
+      <a href=""><li class="px-3">comedy</li></a>
+      <a href=""><li class="px-3">horror</li></a>
+     
+    
+  
+    </ul></div>
+  </div>
+  <div class="col-lg-9">
 <div class="container-fluid">
   <div class="row py-4 ">
 
@@ -124,7 +194,7 @@ rel="stylesheet" href="{% static 'mainapp/css/bib.css' %}"> {% endblock%}
       {% endif %}
     </ul>
   </nav>
-</div>
+</div></div></div>
 {% endblock content2 %}
 
 

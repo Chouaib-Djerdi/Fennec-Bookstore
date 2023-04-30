@@ -3,6 +3,9 @@
     height: 400px;
 }
 
+a{
+    color: black;
+}
 .product-grid{
     font-family: 'Poppins', sans-serif;
     text-align: center;
@@ -108,7 +111,7 @@
 .product-grid .add-to-cart{
     color: #fff;
     background-color: #fea82f;
-    font-size: 100%;
+    font-size: 67%;
     font-weight: 500;
     text-transform: uppercase;
     line-height: 40px;
@@ -133,3 +136,74 @@
         font-size: 70%;
     }
 }
+.filtercontainer{
+}
+@media only screen and (min-width: 767px){
+    
+    .filtercontainer .row{
+    
+        display: flex;
+        height: 100px;
+       
+        background: #fcecdd;
+        width: 100%;
+        margin: auto;
+}
+}
+@media only screen and (max-width: 767px){
+    
+    .filtercontainer .row{
+    
+        display: flex;
+        height: 200px;
+       
+        background: #fcecdd;
+        width: 100%;
+        margin: auto;
+}
+}
+.filtercontainer .row{
+    
+    width: 100%;
+   
+    background: #fcecdd;
+   
+}
+.filtercontainer .row .dropdown{
+    background-color: white;
+    border-radius: 15px;
+    width: 80%;
+    margin: auto;
+   
+}
+.cat ul {
+    margin-top: 12%;
+    list-style: none;
+    margin-left: 10%;
+ 
+}
+.cat ul li{
+    line-height: 50px;
+    font-size: 120%;
+    margin-top: 10px;
+   
+}
+.cat ul li:hover{
+    background-color: #967462;
+    color: white;
+    border-radius: 13px;
+}
+.cat{
+    border-right: 1px solid rgba(156, 142, 142, 0.893);
+    padding-right: 20px;
+ 
+
+}
+@media only screen and (max-width: 1170px){
+
+.cat ul li{
+    line-height: 50px;
+    font-size: 80%;
+    margin-top: 10px;
+   
+}}
