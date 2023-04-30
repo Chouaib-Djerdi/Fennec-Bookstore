@@ -138,6 +138,7 @@ body {
 .first form {
   width: 90%;
   display: flex;
+  margin: auto;
 }
 
 .first .btn {
@@ -552,13 +553,11 @@ body {
   opacity: 1;
 }
 
-.footer p {
-  color: #fff;
-  margin: 15px 0 10px 0;
-  font-size: 1rem;
-  font-weight: 300;
-}
 
+footer{
+  width: 100%;
+  
+}
 .titles h1 {
   position: relative;
   padding: 0;
