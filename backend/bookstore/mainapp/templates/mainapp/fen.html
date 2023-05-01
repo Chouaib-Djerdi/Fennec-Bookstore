@@ -62,38 +62,29 @@
       </a>
     </div>
   </div>
-  <div class="row py-4">
+  <div class="row py-4 ">
     {% for book in books %}
-
-    <div class="col-lg-3 text-center col-sm-6 text-center col-6 text-center">
-      <div class="card border-0 align-items-center">
-        <a href="{% url 'mainapp:wishlist-add' book.id %}">
-          <div class="heart-container">
-            <span class="heart">&#10084;</span>
-            <span class="wish-list-text">Add to wish list</span>
-          </div>
-        </a>
-        <div class="card-body">
-          <a href="{% url 'mainapp:book-detail' book.id %}">
-            <img src="{{book.cover.url}}" alt="" />
-          </a>
-          <div class="row py-2">
-            <div class="col-lg-7 px-3 col-md-7 col-sm-12">
-              <a href="{% url 'mainapp:book-detail' book.id %}">
-                <b> {{book.title}}</b></a
-              >
-            </div>
-            <div class="col-lg-5 col-md-5 col-sm-12">
-              <a href=""> <h6 data-hover="Quick Add">{{book.price}} DA</h6></a>
+    <div class="col-lg-3 text-center  col-md-4 col-sm-6 text-center col-6 text-center">
+      <div class="product-grid" >
+        <div class="product-image" >
+   
+                <img class="pic-1"  src="{{book.cover.url}}">
             
-             
-            </div>
-          </div>
-          <a class="writer px-1" href="">{{book.author}} </a>
+           
+            <ul class="product-links">
+                <li><a href="#" data-tip="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
+               
+            </ul>
         </div>
-      </div>
+        <div class="product-content">
+           
+            <h3 class="title"><a href="#">{{book.title}}</a></h3>
+            <div class="price"><span>$</span> ${{book.price}}</div>
+            <a class="add-to-cart" href="#">add to cart</a>
+        </div>
+        </div>
+       
     </div>
-
     {% endfor %}
   </div>
 </section>
