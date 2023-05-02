@@ -1,0 +1,24 @@
+.card {
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.1);
+    -webkit-transition: all 0.3s ease-in-out, background 0s, color 0s, border-color 0s;
+    transition: all 0.3s ease-in-out, background 0s, color 0s, border-color 0s;
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #FFFFFF;
+    background-clip: border-box;
+    border: 0 solid rgba(34, 41, 47, 0.125);
+    border-radius: 0.428rem;
+}
