@@ -8,29 +8,23 @@
 
 a {
   text-decoration: none;
- 
-
 }
 
-.dropdown-hover:hover>.dropdown-menu {
+.dropdown-hover:hover > .dropdown-menu {
   display: inline-block;
+}
+.list-group-flush {
+  width: 200px;
+}
 
- 
-  }
-  .list-group-flush{
-    width: 200px;
-
-  }
- 
-  .dropdown-hover>.dropdown-toggle:active {
+.dropdown-hover > .dropdown-toggle:active {
   /*Without this, clicking will make it sticky*/
   pointer-events: none;
-  }
-
+}
 
 .container1 {
   background-color: #ffffff;
- 
+
   margin: auto;
   /* floating effect */
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -42,7 +36,11 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   background: linear-gradient(#fcecdd, #fea82f);
-  font-family: poppins;
+  font-family: "poppins";
+}
+
+.boton {
+  border: none;
 }
 
 .navbar {
@@ -189,13 +187,12 @@ body {
 .book .row .col-lg-3 h6 {
   margin: auto;
 }
-.book .row .col-lg-3 h6:hover{
+.book .row .col-lg-3 h6:hover {
   font-size: 0px;
 }
-.book .row .col-lg-3 h6:hover::after{
+.book .row .col-lg-3 h6:hover::after {
   content: attr(data-hover);
   font-size: 14px;
-
 }
 .book {
   padding-top: 60px;
@@ -299,6 +296,7 @@ body {
 
 .c-item {
   height: 480px;
+  font-family: "Prata", serif;
 }
 
 .c-img {
@@ -553,10 +551,8 @@ body {
   opacity: 1;
 }
 
-
-footer{
+footer {
   width: 100%;
-  
 }
 .titles h1 {
   position: relative;
@@ -720,4 +716,8 @@ footer{
   .h-custom {
     height: 100vh !important;
   }
+}
+
+.hidden {
+  display: none !important;
 }

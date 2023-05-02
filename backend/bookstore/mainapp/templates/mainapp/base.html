@@ -29,9 +29,11 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;800&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body>
-    {% block content %}{% endblock content %}
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript">
       var user = "{{request.user}}";
       function getToken(name) {
@@ -81,6 +83,10 @@
       }
       console.log("Cart:", cart);
     </script>
+  </head>
+  <body>
+    {% block content %}{% endblock content %}
+
     <script src="{% static 'mainapp/js/cart.js' %}"></script>
     <script src="{% static 'mainapp/js/custom.js' %}"></script>
     {% comment "COMMENT SCRIPT" %}{% endcomment %}

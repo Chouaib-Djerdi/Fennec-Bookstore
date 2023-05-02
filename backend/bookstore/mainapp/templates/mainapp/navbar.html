@@ -12,7 +12,13 @@
                   class="nav-link active hover-underline-animation"
                   href="{% url 'mainapp:cart' %}"
                   ><i class="fa-solid fa-cart-shopping"></i
-                ></a>
+                  ><span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
+                  >
+                    {{cartItems}}
+                    <span class="visually-hidden">unread messages</span>
+                  </span></a
+                >
               </li>
               <li class="nav-item">
                 <a
@@ -138,26 +144,26 @@
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
                       <a href="" class="list-group-item list-group-item-action">
-                        finnance
+                        Novels
                       </a>
                       <a href="" class="list-group-item list-group-item-action"
-                        >riwayat</a
+                        >History</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >akchen</a
+                        >Mystery</a
                       >
                     </div>
                   </div>
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
                       <a href="" class="list-group-item list-group-item-action">
-                        finnance
+                        Self-Help
                       </a>
                       <a href="" class="list-group-item list-group-item-action"
-                        >riwayat</a
+                        >Religion</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >akchen</a
+                        >Biography</a
                       >
                     </div>
                   </div>
@@ -165,13 +171,13 @@
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
                       <a href="" class="list-group-item list-group-item-action"
-                        >comedy</a
+                        >Kids</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >horror</a
+                        >Thrilling</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >technology</a
+                        >Educational</a
                       >
                     </div>
                   </div>
@@ -194,107 +200,128 @@
     </div>
   </nav>
   {% block content2 %}{% endblock content2 %}
- <div class="container2 mt-5 w-100" >
+  <div class="container2 mt-5 w-100">
+    <footer
+      class="text-white text-center text-lg-start"
+      style="background-color: #23242a; width: 100%"
+    >
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row mt-4">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4 pb-1">Search something</h5>
 
-      <footer class="text-white text-center text-lg-start" style="background-color: #23242a;
-      width: 100%;
-      ">
-        <!-- Grid container -->
-        <div class="container p-4">
-          <!--Grid row-->
-          <div class="row mt-4">
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-             
-    <h5 class="text-uppercase mb-4 pb-1">Search something</h5>
-    
-              <div class="form-outline form-white mb-4">
-                <input type="text" id="formControlLg" class="form-control form-control-lg">
-                <label class="form-label" for="formControlLg" style="margin-left: 0px;">Search</label>
-              <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 48.8px;"></div><div class="form-notch-trailing"></div></div></div>
-    
-              <ul class="fa-ul" style="margin-left: 1.65em;">
-                <li class="mb-3">
-                  <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">PARK MALL, Setif 19000، الجزائر · ~4 </span>
-                </li>
-                <li class="mb-3">
-                  <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@example.com</span>
-                </li>
-                <li class="mb-3">
-                  <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+ 01 234 567 88</span>
-                </li>
-                <li class="mb-3">
-                  <span class="fa-li"><i class="fas fa-print"></i></span><span class="ms-2">+ 01 234 567 89</span>
-                </li> 
-              </ul>
-            
-            </div>
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0 text-center">
-               <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.005154458105!2d5.408005115230268!3d36.19075648007875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f31553934d0bef%3A0x69b27700f6129f88!2z2YHZhtmDINmE2YTZg9iq2KggZmVubmVjIGJvb2tz!5e0!3m2!1sen!2sdz!4v1680182368639!5m2!1sen!2sdz"
-        width="60%"
-        height="320"
-        style="border: 0 ;
-        width: 100%;"
-        allowfullscreen=""
-        loading="lazy"
-        id="my-location"
-      
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-            </div>
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase mb-4">Opening hours</h5>
-    
-              <table class="table text-center text-white">
-                <tbody class="font-weight-normal">
-                  <tr>
-                    <td>Mon - Thu:</td>
-                    <td>8am - 9pm</td>
-                  </tr>
-                  <tr>
-                    <td>Fri - Sat:</td>
-                    <td>8am - 1am</td>
-                  </tr>
-                  <tr>
-                    <td>Sunday:</td>
-                    <td>9am - 10pm</td>
-                  </tr>
-                </tbody>
-              </table>
-                <div class="mt-4 text-center">
-                <!-- Facebook -->
-                <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-facebook-f"></i></a>
-                <!-- Dribbble -->
-                <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-dribbble"></i></a>
-                <!-- Twitter -->
-                <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-twitter"></i></a>
-                <!-- Google + -->
-                <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-google-plus-g"></i></a>
-                <!-- Linkedin -->
+            <div class="form-outline form-white mb-4">
+              <input
+                type="text"
+                id="formControlLg"
+                class="form-control form-control-lg"
+              />
+              <label
+                class="form-label"
+                for="formControlLg"
+                style="margin-left: 0px"
+                >Search</label
+              >
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px"></div>
+                <div class="form-notch-middle" style="width: 48.8px"></div>
+                <div class="form-notch-trailing"></div>
               </div>
             </div>
-            <!--Grid column-->
+
+            <ul class="fa-ul" style="margin-left: 1.65em">
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-home"></i></span
+                ><span class="ms-2">PARK MALL, Setif 19000، الجزائر · ~4 </span>
+              </li>
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-envelope"></i></span
+                ><span class="ms-2">info@example.com</span>
+              </li>
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-phone"></i></span
+                ><span class="ms-2">+ 01 234 567 88</span>
+              </li>
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-print"></i></span
+                ><span class="ms-2">+ 01 234 567 89</span>
+              </li>
+            </ul>
           </div>
-          <!--Grid row-->
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0 text-center">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.005154458105!2d5.408005115230268!3d36.19075648007875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f31553934d0bef%3A0x69b27700f6129f88!2z2YHZhtmDINmE2YTZg9iq2KggZmVubmVjIGJvb2tz!5e0!3m2!1sen!2sdz!4v1680182368639!5m2!1sen!2sdz"
+              width="60%"
+              height="320"
+              style="border: 0; width: 100%"
+              allowfullscreen=""
+              loading="lazy"
+              id="my-location"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Opening hours</h5>
+
+            <table class="table text-center text-white">
+              <tbody class="font-weight-normal">
+                <tr>
+                  <td>Mon - Thu:</td>
+                  <td>8am - 9pm</td>
+                </tr>
+                <tr>
+                  <td>Fri - Sat:</td>
+                  <td>8am - 1am</td>
+                </tr>
+                <tr>
+                  <td>Sunday:</td>
+                  <td>9am - 10pm</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="mt-4 text-center">
+              <!-- Facebook -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <!-- Dribbble -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"
+                ><i class="fab fa-dribbble"></i
+              ></a>
+              <!-- Twitter -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <!-- Google + -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"
+                ><i class="fab fa-google-plus-g"></i
+              ></a>
+              <!-- Linkedin -->
+            </div>
+          </div>
+          <!--Grid column-->
         </div>
-        <!-- Grid container -->
-    
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2023 Copyright:
-          <a class="text-white" href="https://mdbootstrap.com/">Fennec Books</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-      
-    </div>
-    <!-- End of .container -->
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">Fennec Books</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </div>
+  <!-- End of .container -->
 </div>
 {% endblock content %}

@@ -1,0 +1,255 @@
+{% extends 'mainapp/navbar.html' %}{% load static %} {% block content2 %}
+
+<section class="h-100 h-custom" style="background-color: #eee">
+  <div class="container py-2 h-100">
+    <div class="row  d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-lg-6">
+                <h5 class="mb-3">
+                  <a href="{% url 'mainapp:main-page' %}" class="text-body"
+                    ><i class="fas fa-long-arrow-alt-left me-2"></i>Continue
+                    shopping</a
+                  >
+                </h5>
+                <hr />
+
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4"
+                >
+                  <div>
+                    <p class="mb-1">Shopping cart</p>
+                    <p class="mb-0">
+                      You have {{cartItems}} items in your cart
+                    </p>
+                  </div>
+                  <div>
+                    <p class="mb-0">
+                      <span class="text-muted">Sort by:</span>
+                      <a href="#!" class="text-body"
+                        >price <i class="fas fa-angle-down mt-1"></i
+                      ></a>
+                    </p>
+                  </div>
+                </div>
+                {% for item in items %}
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex flex-row align-items-center">
+                        <div>
+                          <img
+                            src="{{item.product.cover.url}}"
+                            class="img-fluid rounded-3"
+                            alt="Shopping item"
+                            style="width: 65px"
+                          />
+                        </div>
+                        <div class="ms-3">
+                          <h5>{{item.product.title}}</h5>
+                          <p class="small mb-0">{{item.product.author.name}}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center">
+                        <div style="width: 50px">
+                          <h5 class="fw-normal mb-0">{{item.quantity}}</h5>
+                        </div>
+                        <div style="width: 90px">
+                          <h5 class="mb-0">${{item.product.price}}</h5>
+                        </div>
+                        {% comment %} <a href="#!" style="color: #cecece"
+                          ><i class="fas fa-trash-alt"></i
+                        ></a> {% endcomment %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-12 px-4">
+                    <h1>You can see my Order Form</h1>
+                    <span>with some explanation below</span>
+                    <hr class="mt-1" />
+                  </div>
+                </div>
+                <form id="form">
+                  <div id="user-info">
+                    <div class="row mx-4">
+                      <div class="col-12">
+                        <label class="order-form-label">Personal Info</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-outline">
+                          <input
+                            required
+                            type="text"
+                            name="name"
+                            class="form-control order-form-input"
+                          />
+                          <label class="form-label" for="form1">Name</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 mt-2 mt-sm-0">
+                        <div class="form-outline">
+                          <input
+                            required
+                            type="email"
+                            name="email"
+                            class="form-control order-form-input"
+                          />
+                          <label class="form-label" for="form2">Email</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3 mx-4">
+                    <div class="col-12">
+                      <label class="order-form-label">Shipping Info</label>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="address"
+                          id="form5"
+                          class="form-control order-form-input"
+                        />
+                        <label class="form-label" for="form5">Adress</label>
+                      </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="city"
+                          id="form6"
+                          class="form-control order-form-input"
+                        />
+                        <label class="form-label" for="form6">City</label>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6 mt-2 pe-sm-2">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="state"
+                          id="form9"
+                          class="form-control order-form-input"
+                        />
+                        <label class="form-label" for="form9">State</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 mt-2 ps-sm-0">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          name="zipcode"
+                          id="form10"
+                          class="form-control order-form-input"
+                        />
+                        <label class="form-label" for="form10"
+                          >Postal / Zip Code</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <input
+                        id="form-button"
+                        class="btn btn-warning w-100"
+                        type="submit"
+                        value="Continue"
+                      />
+                    </div>
+                  </div>
+                </form>
+                <div class="hidden" id="payment-info">
+                  <p>Payment options</p>
+                  <button id="make-payment">Make Payment</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  var total = "{{order.get_cart_total}}";
+
+  if (user != "AnonymousUser") {
+    document.getElementById("user-info").innerHTML = "";
+  }
+  var form = document.getElementById("form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("Form Submitted...");
+    document.getElementById("form-button").classList.add("hidden");
+    document.getElementById("payment-info").classList.remove("hidden");
+  });
+
+  document
+    .getElementById("make-payment")
+    .addEventListener("click", function (e) {
+      submitFormData();
+    });
+
+  function submitFormData() {
+    console.log("Payment button clicked");
+    var userFormData = {
+      name: null,
+      email: null,
+      total: total,
+    };
+
+    var shippingInfo = {
+      address: null,
+      city: null,
+      state: null,
+      zipcode: null,
+    };
+    if (true) {
+      shippingInfo.address = form.address.value;
+      shippingInfo.city = form.city.value;
+      shippingInfo.state = form.state.value;
+      shippingInfo.zipcode = form.zipcode.value;
+    }
+
+    if (user == "AnonymousUser") {
+      userFormData.name = form.name.value;
+      userFormData.email = form.email.value;
+    }
+
+    var url = "/process_order/";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "applicaiton/json",
+        "X-CSRFToken": csrftoken,
+      },
+      body: JSON.stringify({ form: userFormData, shipping: shippingInfo }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        alert("Transaction completed");
+
+        cart = {};
+        document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+        window.location.href = "{% url 'mainapp:main-page' %}";
+      });
+  }
+</script>
+
+{% endblock content2 %}

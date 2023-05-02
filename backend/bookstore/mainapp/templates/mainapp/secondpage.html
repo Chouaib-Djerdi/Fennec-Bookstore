@@ -9,7 +9,7 @@
         <h2>Harry Potter And The Chamber Of Secrets</h2>
         <p>By <a href="">writer of the book</a></p>
       </div>
-      <div class="row ">
+      <div class="row">
         <div
           class="col-lg-6 text-center col-md-6 text-center col-sm-12 text-center"
         >
@@ -54,7 +54,6 @@
               </ul>
               <div class="buy text-center">
                 <button
-                  href="{% url 'mainapp:cart-add' book.id %}"
                   class="update-cart"
                   type="submit"
                   data-product="{{book.id}}"

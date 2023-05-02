@@ -8,30 +8,25 @@ from django.http import JsonResponse
 import json
 from .utils import cookieCart,cartData,guestOrder
 from django.views.decorators.csrf import csrf_exempt
+import datetime
 # Create your views here.
-
-
-
-@csrf_exempt
-def book_rating(request):
-    if request.method == 'POST':
-        book_id = request.POST.get('book_id')
-        rating = request.POST.get('rating')
-
-        # Save the rating to the database
-
-        data = {'success': True}
-        return JsonResponse(data)
-    else:
-        data = {'success': False}
-        return JsonResponse(data)
-
 
 
 def mainpage(request):
     books = models.Book.objects.all()
     publishers = models.Publisher.objects.all()
-    return render(request,'mainapp/fen.html',{'books':books,'publishers':publishers})
+
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    books = models.Book.objects.all()
+    context = {'books': books, 'cartItems': cartItems, 'publishers': publishers}
+
+    return render(request, 'mainapp/fen.html',context)
+
 
 def bookdetailpage(request,pk):
     book = models.Book.objects.get(pk=pk)
@@ -46,7 +41,7 @@ def authordetailpage(request,pk):
 
 def booklistpage(request):
     books = models.Book.objects.all()
-    paginator = Paginator(books,2)
+    paginator = Paginator(books,3)
     page_nbr = request.GET.get('page')
     page_obj = paginator.get_page(page_nbr)
     nbr = 'a' * page_obj.paginator.num_pages
@@ -107,18 +102,6 @@ def remove_from_wishlist(request, pk):
         return redirect('/wishlist/')
     return redirect('/')
 
-
-@login_required
-def add_to_cart(request,pk):
-    user = request.user
-    customer, created = models.Customer.objects.get_or_create(user=user)
-    cart, created = models.Order.objects.get_or_create(customer=customer)
-    book = get_object_or_404(models.Book, pk=pk)
-    order_item, created = models.OrderItem.objects.get_or_create(product=book,order=cart)
-    order_item.save()
-    return redirect('/')
-
-
 def cart(request):
     # cart, created = models.Order.objects.get_or_create(customer=request.user.customer)
     # cart_items = cart.orderitem_set.all()
@@ -128,16 +111,10 @@ def cart(request):
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
-    context = {'cart_items':items, 'cart':order}
+    context = {'cartItems':cartItems, 'cart':order, 'items':items}
     return render(request, 'mainapp/cart.html', context)
     
-@login_required
-def remove_from_cart(request, pk):  
-    order = models.Order.objects.get(customer=request.user)
-    book = get_object_or_404(models.Book, pk=pk)
-    orderitem = models.OrderItem.objects.get(product=book,order=order)
-    orderitem.delete()
-    return redirect('/cart/')
+
     
 def updateitem(request):
     data = json.loads(request.body)
@@ -166,5 +143,46 @@ def updateitem(request):
     return JsonResponse('Item was added',safe=False) 
 
 
-def index(request):
-    return render(request,'mainapp/index.html')
+def checkout(request):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {
+        'items': items,
+        'order': order,
+        'cartItems': cartItems,
+    }
+
+    return render(request, 'mainapp/checkout.html', context)
+
+def processOrder(request):
+	transaction_id = datetime.datetime.now().timestamp()
+	data = json.loads(request.body)
+
+	if request.user.is_authenticated:
+		customer = request.user.customer
+		order, created = models.Order.objects.get_or_create(customer=customer, complete=False)
+	else:
+		customer, order = guestOrder(request, data)
+
+	total = float(data['form']['total'])
+	order.transaction_id = transaction_id
+
+	if total == order.get_cart_total:
+		order.complete = True
+	order.save()
+
+	if True:
+		models.ShippingAddress.objects.create(
+		customer=customer,
+		order=order,
+		address=data['shipping']['address'],
+		city=data['shipping']['city'],
+		state=data['shipping']['state'],
+		zipcode=data['shipping']['zipcode'],
+		)
+
+	return JsonResponse('Payment submitted..', safe=False)

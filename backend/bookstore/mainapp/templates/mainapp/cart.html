@@ -1,6 +1,6 @@
 {% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
 
-<section >
+<section>
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col">
@@ -18,30 +18,34 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for item in cart_items %}
+                  {% for item in items %}
                   <tr>
-                   <td class="align-middle">  <div class="d-flex align-items-center">
-                    <img
-                      src="{{item.product.cover.url}}"
-                      class="img-fluid rounded-3"
-                      style="width: 120px"
-                      alt="Book"
-                    />
-                    <div class="flex-column  ms-4">
-                      <p class="mb-2"  style="font-weight: 700;">{{item.product.title}}</p>
-                      <p class="mb-0" style="font-weight: 700;" >{{item.product.author.name}}</p>
-                    </div>
-                  </div></td>
-                    
-                    
+                    <td class="align-middle">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="{{item.product.cover.url}}"
+                          class="img-fluid rounded-3"
+                          style="width: 120px"
+                          alt="Book"
+                        />
+                        <div class="flex-column ms-4">
+                          <p class="mb-2" style="font-weight: 700">
+                            {{item.product.title}}
+                          </p>
+                          <p class="mb-0" style="font-weight: 700">
+                            {{item.product.author.name}}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
 
-                    <td class="align-middle" >
+                    <td class="align-middle">
                       <div class="d-flex flex-row">
                         <button
                           data-product="{{item.product.id}}"
                           data-action="remove"
                           class="btn btn-link px-2 update-cart"
-                          style="margin-left: 100px;"
+                          style="margin-left: 100px"
                         >
                           <i class="fas fa-minus"></i>
                         </button>
@@ -86,9 +90,15 @@
     </div>
     <div class="card my-2">
       <div class="card-body">
-        <button type="button" class="btn btn-warning btn-lg w-100">
+        {% if items %}
+        <a
+          href="{% url 'mainapp:checkout' %}"
+          type="button"
+          class="btn btn-warning btn-lg w-100"
+        >
           Proceed to Pay
-        </button>
+        </a>
+        {% endif %}
       </div>
     </div>
   </div>

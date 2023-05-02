@@ -3,8 +3,8 @@
 <section class="first">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6  col-sm-0 my-5">
-        <h1>
+      <div class="col-lg-6 col-sm-0 my-5">
+        <h1 style="font-family: 'Prata', serif; font-size: 5.5rem">
           Your favourite place to<br /><span style="color: #fea82f">read</span>
         </h1>
         <h6>
@@ -63,7 +63,7 @@
     </div>
   </div>
   <div class="row py-4">
-    {% for book in books %}
+    {% for book in books|slice:":4" %}
 
     <div class="col-lg-3 text-center col-sm-6 text-center col-6 text-center">
       <div class="card border-0 align-items-center">
@@ -75,7 +75,7 @@
         </a>
         <div class="card-body">
           <a href="{% url 'mainapp:book-detail' book.id %}">
-            <img src="{{book.cover.url}}" alt="" />
+            <img src="{{book.coverURL}}" alt="" />
           </a>
           <div class="row py-2">
             <div class="col-lg-7 px-3 col-md-7 col-sm-12">
@@ -84,9 +84,14 @@
               >
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12">
-              <a href=""> <h6 data-hover="Quick Add">{{book.price}} DA</h6></a>
-            
-             
+              <button
+                class="update-cart boton"
+                type="submit"
+                data-product="{{book.id}}"
+                data-action="add"
+              >
+                <h6 data-hover="Quick Add">{{book.price}} DA</h6>
+              </button>
             </div>
           </div>
           <a class="writer px-1" href="">{{book.author}} </a>
