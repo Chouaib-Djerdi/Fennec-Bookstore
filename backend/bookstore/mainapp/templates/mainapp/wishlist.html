@@ -1,111 +1,115 @@
-{% extends 'mainapp/navbar.html' %} {% block content2 %}
+{% extends 'mainapp/navbar.html' %} {% block content2 %} {% if wishlist_items %}
+<ul>
+  {% for item in wishlist_items %}
 
-<section>
+  <li>
+    {{item}} <br />
+    <form method="POST" action="{% url 'mainapp:wishlist-remove' item.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Remove from wishlist</button>
+    </form>
+  </li>
+
+  {% endfor %}
+</ul>
+{% else %}
+
+
+
+{% endif %} <section >
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title mb-3">
-              <a href="{% url 'mainapp:main-page' %}" class="text-body"
-                ><i class="fas fa-long-arrow-alt-left me-2"></i>Continue
-                shopping</a
-              >
-            </h5>
-            <hr />
-            {% if wishlist_items %}
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
                     <th scope="col" class="h5">WishList</th>
+
+                    
+                   
+                    
                   </tr>
                 </thead>
-                {% for book in wishlist_items %}
                 <tbody>
-                  <div class="tableau">
-                    <tr>
-                      <td class="align-middle">
-                        <div class="d-flex align-items-center">
-                          <img
-                            src="{{book.cover.url}}"
-                            class="img-fluid rounded-3"
-                            style="width: 120px"
-                            alt="Book"
-                          />
-                          <div class="flex-column ms-4">
-                            <p class="mb-2" style="font-weight: 700">
-                              {{book.title}}
-                            </p>
-                            <p class="mb-0" style="font-weight: 700">
-                              {{book.author.name}}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
+              <div class="tableau"> <tr >
+                <td class="align-middle">  <div class="d-flex align-items-center">
+                 <img
+                   src="data:image/png;base64,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"
+                   class="img-fluid rounded-3"
+                   style="width: 120px"
+                   alt="Book"
+                 />
+                 <div class="flex-column  ms-4">
+                   <p class="mb-2"  style="font-weight: 700;">Book 1 </p>
+                   <p class="mb-0" style="font-weight: 700;" >mohamed hani</p>
+                 </div>
+               </div></td>
+                 
+                 
 
-                      <td class="align-middle">
-                        <b><span>Price</span></b>
-                        <p class="mb-0" style="font-weight: 500">
-                          {{book.price}}
-                        </p>
-                      </td>
-                      <td class="align-middle">
-                        <div class="add"><button>Move To Cart</button></div>
-                      </td>
+               
+                 <td class="align-middle  ">
+                   <b ><span>Price</span></b>
+                   <p class="mb-0" style="font-weight: 500">
+20DA  
+                   </p>
+                 </td>
+                 <td class="align-middle ">
+                   <div class="add"> <button >Move To Cart</button></div>
+                  
+                 </td>
+                
+                   <td class="align-middle">
+                     <div class="trash " > <a href="">
+                     
+                       <i  class="fas fa-trash"></i></a> </div>
+                   
+       <style>
+     .trash a i{
+       color: black;
+       font-size: 23px;
+     }
+    
+     .trash a i:hover{
 
-                      <td class="align-middle">
-                        <div class="trash">
-                          <form
-                            method="POST"
-                            action="{% url 'mainapp:wishlist-remove' book.id %}"
-                          >
-                            {% csrf_token %}
-                            <button type="submit" class="btn">
-                              <i class="fas fa-trash"></i>
-                            </button>
-                          </form>
-                        </div>
+       color: red;
+     }
+     .add button {
+       color: #fea82f;
+                     width: 150px;
+                     height: 40px;
+                     border: 1px solid #fea82f;
+                     border-radius: 25px;
+     }
+     .add button:hover{
+       background-color: #fea82f;
+       color: white;
+     }
+     .tableau tr td{margin-left: 800px;}
+       </style>
 
-                        <style>
-                          .trash a i {
-                            color: black;
-                            font-size: 23px;
-                          }
-
-                          .trash a i:hover {
-                            color: red;
-                          }
-                          .add button {
-                            color: #fea82f;
-                            width: 150px;
-                            height: 40px;
-                            border: 1px solid #fea82f;
-                            border-radius: 25px;
-                          }
-                          .add button:hover {
-                            background-color: #fea82f;
-                            color: white;
-                          }
-                          .tableau tr td {
-                            margin-left: 800px;
-                          }
-                        </style>
-                      </td>
-                    </tr>
-                  </div>
+                   </td>
+                  
+                
+               </tr></div>
+                 
+                
                 </tbody>
-                {% endfor %}
               </table>
             </div>
           </div>
-          {% else %}
-          <h1>Oops! Your Wishlist is empty</h1>
-          {% endif %}
         </div>
       </div>
     </div>
+    <div class="card my-2">
+      <div class="card-body">
+        <button type="button" class="btn btn-warning btn-lg w-100">
+          Proceed to Pay
+        </button>
+      </div>
+    </div>
   </div>
-</section>
-
-{% endblock content2 %}
+</section> {% endblock content2 %}
