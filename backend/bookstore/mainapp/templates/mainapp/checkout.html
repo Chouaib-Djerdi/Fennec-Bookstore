@@ -2,7 +2,7 @@
 
 <section class="h-100 h-custom" style="background-color: #eee">
   <div class="container py-2 h-100">
-    <div class="row  d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card">
           <div class="card-body p-4">
@@ -59,9 +59,11 @@
                         <div style="width: 90px">
                           <h5 class="mb-0">${{item.product.price}}</h5>
                         </div>
-                        {% comment %} <a href="#!" style="color: #cecece"
+                        {% comment %}
+                        <a href="#!" style="color: #cecece"
                           ><i class="fas fa-trash-alt"></i
-                        ></a> {% endcomment %}
+                        ></a>
+                        {% endcomment %}
                       </div>
                     </div>
                   </div>
@@ -114,6 +116,7 @@
                     <div class="col-12">
                       <div class="form-outline">
                         <input
+                          required
                           type="text"
                           name="address"
                           id="form5"
@@ -125,6 +128,7 @@
                     <div class="col-12 mt-2">
                       <div class="form-outline">
                         <input
+                          required
                           type="text"
                           name="city"
                           id="form6"
@@ -137,6 +141,7 @@
                     <div class="col-sm-6 mt-2 pe-sm-2">
                       <div class="form-outline">
                         <input
+                          required
                           type="text"
                           name="state"
                           id="form9"
@@ -148,6 +153,7 @@
                     <div class="col-sm-6 mt-2 ps-sm-0">
                       <div class="form-outline">
                         <input
+                          required
                           type="text"
                           name="zipcode"
                           id="form10"
@@ -172,8 +178,10 @@
                   </div>
                 </form>
                 <div class="hidden" id="payment-info">
-                  <p>Payment options</p>
-                  <button id="make-payment">Make Payment</button>
+                  <small>Payment options</small>
+                  <div id="paypal-button-container"></div>
+
+                  <!-- <button id="make-payment">Make Payment</button> -->
                 </div>
               </div>
             </div>
@@ -184,9 +192,44 @@
   </div>
 </section>
 
-<script type="text/javascript">
-  var total = "{{order.get_cart_total}}";
+<script src="https://www.paypal.com/sdk/js?client-id=AfsuN8hdqzUNDAqpMO34KhFy-RHOuE-haZAnLSjVXt722FLcx0LBhumgxO2R2j-VhkaLz6v-iX4Sy1aq&currency=USD"></script>
 
+<script>
+  var total = "{{order.get_cart_total}}";
+  // Render the PayPal button into #paypal-button-container
+  paypal
+    .Buttons({
+      style: {
+        color: "blue",
+        shape: "rect",
+      },
+
+      // Set up the transaction
+      createOrder: function (data, actions) {
+        console.log("function entered createOrder");
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: parseFloat(total).toFixed(2),
+              },
+            },
+          ],
+        });
+      },
+
+      // Finalize the transaction
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          // Show a success message to the buyer
+          submitFormData();
+        });
+      },
+    })
+    .render("#paypal-button-container");
+</script>
+
+<script type="text/javascript">
   if (user != "AnonymousUser") {
     document.getElementById("user-info").innerHTML = "";
   }
@@ -199,11 +242,11 @@
     document.getElementById("payment-info").classList.remove("hidden");
   });
 
-  document
+  /* document
     .getElementById("make-payment")
     .addEventListener("click", function (e) {
       submitFormData();
-    });
+    }); */
 
   function submitFormData() {
     console.log("Payment button clicked");
