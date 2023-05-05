@@ -121,15 +121,15 @@ body {
   padding-top: 0;
 }
 
-.first img {
+/* .first img {
   width: 90%;
-}
+} */
 
 .first h1 {
   font-size: 65px;
   letter-spacing: 4px;
   line-height: 6rem;
-  margin-top: 3.2rem;
+  /* margin-top: 3.2rem; */
   font-weight: 650;
 }
 

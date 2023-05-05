@@ -1,5 +1,6 @@
 {% extends 'mainapp/navbar.html' %}{% load static %} {% block extrahead %}
-<link rel="stylesheet" href="{% static 'mainapp/css/bib.css' %}" /> {%endblock%} {% block content2 %}
+<link rel="stylesheet" href="{% static 'mainapp/css/bib.css' %}" /> {%endblock%}
+{% block content2 %}
 
 <section class="first"></section>
 
@@ -77,14 +78,30 @@
         >
           Categories
         </li>
-        <a href=""><li class="px-3">Novels</li></a>
-        <a href=""><li class="px-3">Mystery</li></a>
-        <a href=""><li class="px-3">Biography</li></a>
-        <a href=""><li class="px-3">History</li></a>
-        <a href=""><li class="px-3">Religion</li></a>
-        <a href=""><li class="px-3">Kids</li></a>
-        <a href=""><li class="px-3">Educational</li></a>
-        <a href=""><li class="px-3">Thrilling</li></a>
+        <a href="{% url 'mainapp:category' category='Novel' %}"
+          ><li class="px-3">Novels</li></a
+        >
+        <a href="{% url 'mainapp:category' category='Fiction' %}"
+          ><li class="px-3">Fiction</li></a
+        >
+        <a href="{% url 'mainapp:category' category='History' %}"
+          ><li class="px-3">History</li></a
+        >
+        <a href="{% url 'mainapp:category' category='Biography' %}"
+          ><li class="px-3">Biography</li></a
+        >
+        <a href="{% url 'mainapp:category' category='Autobiography' %}"
+          ><li class="px-3">Autobiography</li></a
+        >
+        <a href="{% url 'mainapp:category' category='Self-help' %}"
+          ><li class="px-3">Self-help</li></a
+        >
+        <a href="{% url 'mainapp:category' category='Poetry' %}"
+          ><li class="px-3">Poetry</li></a
+        >
+        <a href="{% url 'mainapp:category' category='Religious' %}"
+          ><li class="px-3">Religious</li></a
+        >
       </ul>
     </div>
   </div>
@@ -98,15 +115,14 @@
           <div class="product-grid">
             <div class="product-image">
               <a href="" class="image">
-                <img
-                  class="pic-1"
-                  src="{{book.cover.url}}"
-                />
+                <img class="pic-1" src="{{book.cover.url}}" />
               </a>
 
               <ul class="product-links">
                 <li>
-                  <a href="#" data-tip="Add to Wishlist"
+                  <a
+                    href="{% url 'mainapp:wishlist-add' book.id %}"
+                    data-tip="Add to Wishlist"
                     ><i class="fas fa-heart"></i
                   ></a>
                 </li>
@@ -114,8 +130,15 @@
             </div>
             <div class="product-content">
               <h3 class="title"><a href="#">{{book.title}}</a></h3>
-              <div class="price"> ${{book.price}}</div>
-              <a class="add-to-cart" href="#">add to cart</a>
+              <div class="price">${{book.price}}</div>
+              <button
+                class="update-cart add-to-cart boton"
+                type="submit"
+                data-product="{{book.id}}"
+                data-action="add"
+              >
+                add to cart
+              </button>
             </div>
           </div>
         </div>

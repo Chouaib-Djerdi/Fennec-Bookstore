@@ -55,16 +55,13 @@ def searchbar(request):
         return render(request,'mainapp/searchbar.html',context={'searched':searched,'books':books})
     else:
         return render(request,'mainapp/searchbar.html')
+   
     
-def category(request):
-    categories = []
-    for i in models.Book.GENRE_CHOICES:
-        categories.append(i[0])
-
-    nbr = len(categories)
-    context = {
-        'categories':categories,
-        'nbr':nbr,
+def category(request,category):
+    books = models.Book.objects.filter(genre=category)
+    context =  {
+         'books' :books,
+         'category' :category,
     }
     return render(request,'mainapp/category.html',context)
     
