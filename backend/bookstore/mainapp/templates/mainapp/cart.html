@@ -6,15 +6,16 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
+            {% if items %}
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col" class="h5">Shopping Bag</th>
+                    <th scope="col" class="h5"><p>Shopping Bag</p> </th>
 
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Total</th>
+                    <th scope="col" ><p  style="margin-left: 120px">Quantity</p> </th>
+                    <th scope="col"><p>Price</p> </th>
+                    <th scope="col"><p>Total</p> </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -28,11 +29,19 @@
                           style="width: 120px"
                           alt="Book"
                         />
-                        <div class="flex-column ms-4">
-                          <p class="mb-2" style="font-weight: 700">
+                        <div class="flex-column ms-4" style="width: 100%">
+                          <p class="mb-2" style="font-weight: 700;
+                           font-size: 100%; 
+                            width:200px
+                            ;">
+                            
                             {{item.product.title}}
                           </p>
-                          <p class="mb-0" style="font-weight: 700">
+                          <p class="mb-0" style="font-weight: 700;
+                           font-size: 100%; 
+                            width:200px
+                            ;">
+                            
                             {{item.product.author.name}}
                           </p>
                         </div>
@@ -45,7 +54,7 @@
                           data-product="{{item.product.id}}"
                           data-action="remove"
                           class="btn btn-link px-2 update-cart"
-                          style="margin-left: 100px"
+                          style="margin-left: 110px"
                         >
                           <i class="fas fa-minus"></i>
                         </button>
@@ -70,12 +79,14 @@
                       </div>
                     </td>
                     <td class="align-middle">
-                      <p class="mb-0" style="font-weight: 500">
+                      <p class="mb-0" style="font-weight: 500;
+                      ">
                         ${{item.product.price}}
                       </p>
                     </td>
                     <td class="align-middle">
-                      <p class="mb-0" style="font-weight: 500">
+                      <p class="mb-0" style="font-weight: 500;
+                      ">
                         ${{item.get_total}}
                       </p>
                     </td>
@@ -85,6 +96,24 @@
               </table>
             </div>
           </div>
+          {% else %} <h1 class="text-center" style="font-weight: 700;">You Didn't Add Any Books To Your Cart</h1>
+          <div class="emptycart text-center">  <i  
+            style="
+              font-size: 130px;
+              margin-top: 40px;              "
+            class="fas fa-shopping-cart fa-fade"></i>
+          <br>
+          <a href="{% url 'mainapp:main-page' %}">
+        <button class="my-4" style="
+        color: #fea82f;
+        border: 1px solid #fea82f;
+        border-radius: 15px;
+        height: 50px;
+        width: 40%;
+        "> Continue Shopping </button></a>
+        </div>
+        
+          {% endif %}
         </div>
       </div>
     </div>

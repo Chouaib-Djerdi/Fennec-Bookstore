@@ -1,6 +1,6 @@
 {% extends 'mainapp/base.html' %}{% load static %} {% block content %}
 
-<div class="container1">
+<div class="container1 m-auto">
   <div class="nav1">
     <nav class="navbar navbar-expand">
       <div class="container-fluid">
@@ -77,14 +77,19 @@
             >
               {% csrf_token %}
               <input
+                style="font-size:100%;"
                 class="form-control me-2"
                 type="search"
-                placeholder="Search"
+                placeholder="Search "
                 aria-label="Search"
                 name="searched"
               />
-              <button class="btn btn-outline-success" type="submit">
-                Search
+              <button class="btn btn-outline-success"  style="margin-left: -50px; background-color: white;
+               color: #fea82f;
+               border: 0 ;
+               
+              " type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>
           </div>
@@ -208,29 +213,12 @@
       <!-- Grid container -->
       <div class="container p-4">
         <!--Grid row-->
-        <div class="row mt-4">
+        <div class="row mt-4 align-items-center">
           <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-4 pb-1">Search something</h5>
+           
 
-            <div class="form-outline form-white mb-4">
-              <input
-                type="text"
-                id="formControlLg"
-                class="form-control form-control-lg"
-              />
-              <label
-                class="form-label"
-                for="formControlLg"
-                style="margin-left: 0px"
-                >Search</label
-              >
-              <div class="form-notch">
-                <div class="form-notch-leading" style="width: 9px"></div>
-                <div class="form-notch-middle" style="width: 48.8px"></div>
-                <div class="form-notch-trailing"></div>
-              </div>
-            </div>
+            
 
             <ul class="fa-ul" style="margin-left: 1.65em">
               <li class="mb-3">

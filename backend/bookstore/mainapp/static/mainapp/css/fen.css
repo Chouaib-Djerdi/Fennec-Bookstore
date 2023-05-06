@@ -47,17 +47,12 @@ body {
   background: #fcecdd;
 }
 
-.nav1 form button {
-  background-color: #fea82f;
-  color: white;
-}
+
 .nav1 .dropdown-menu {
   z-index: 10001;
 }
 
-.nav1 form {
-  width: 100%;
-}
+
 .nav1 form input {
   width: 100%;
 }
@@ -88,8 +83,14 @@ body {
     margin-left: 15%;
     width: 100%;
   }
+  
   .nav1 .nav-link {
     font-size: 85%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .nav1 form input {
+    width: 100px;
   }
 }
 .hover-underline-animation {
@@ -127,11 +128,6 @@ body {
 
 
 
-.first form {
-  width: 90%;
-  display: flex;
-  margin: auto;
-}
 
 .first .btn {
   background-color: #fea82f;
@@ -174,10 +170,6 @@ body {
     display: none;
   }
 
-  .first form {
-    width: 80%;
-    display: flex;
-  }
 
 }
 

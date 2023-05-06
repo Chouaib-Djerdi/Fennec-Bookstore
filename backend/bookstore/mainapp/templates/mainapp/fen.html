@@ -33,7 +33,7 @@
         </h6>
 
         <form
-          class="form-inline"
+          class="d-flex"
           method="POST"
           action="{% url 'mainapp:searchbar' %}"
         >
@@ -46,7 +46,8 @@
             name="searched"
           />
 
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success my-2" style="margin-left: -50px; background-color: white; border: 0;" type="submit"> <i style="
+          color: #fea82f;" class="fa-solid fa-magnifying-glass"></i></button>
         </form>
       </div>
       <div class="col-lg-6 col-sm-12 my-4 d-flex justify-content-center">

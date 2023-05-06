@@ -1,6 +1,10 @@
 {% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
 <div class="container-fluid">
-  <h3>You've searched for : {{searched}}</h3>
+  <div class="searcht text-center my-4"><h2 style="font-weight: 700;
+  " >You've searched for : {{searched}}   </h2></div>
+  <div class="searchicon text-center"><i style="font-size: 30px;
+  color: #fea82f;" class="fa-solid fa-magnifying-glass fa-flip"></i></div>
+
 
   {% if searched %}
 
