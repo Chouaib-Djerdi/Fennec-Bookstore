@@ -77,18 +77,23 @@
             >
               {% csrf_token %}
               <input
-                style="font-size:100%;"
+                style="font-size: 100%"
                 class="form-control me-2"
                 type="search"
                 placeholder="Search "
                 aria-label="Search"
                 name="searched"
               />
-              <button class="btn btn-outline-success"  style="margin-left: -50px; background-color: white;
-               color: #fea82f;
-               border: 0 ;
-               
-              " type="submit">
+              <button
+                class="btn btn-outline-success"
+                style="
+                  margin-left: -50px;
+                  background-color: white;
+                  color: #fea82f;
+                  border: 0;
+                "
+                type="submit"
+              >
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>
@@ -152,23 +157,24 @@
                         Novels
                       </a>
                       <a href="" class="list-group-item list-group-item-action"
-                        >History</a
+                        ><i class="fa-solid fa-map"></i> History</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >Mystery</a
+                        ><i class="fa-brands fa-searchengin"></i> Mystery</a
                       >
                     </div>
                   </div>
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
                       <a href="" class="list-group-item list-group-item-action">
-                        Self-Help
+                        <i class="fa-solid fa-hammer"></i> Self-Help
                       </a>
                       <a href="" class="list-group-item list-group-item-action"
-                        >Religion</a
+                        ><i class="fa-solid fa-star-and-crescent"></i>
+                        Religion</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >Biography</a
+                        ><i class="fa-solid fa-book"></i> Biography</a
                       >
                     </div>
                   </div>
@@ -176,10 +182,10 @@
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
                       <a href="" class="list-group-item list-group-item-action"
-                        >Kids</a
+                        ><i class="fa-solid fa-brain"></i> Philosophy</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
-                        >Thrilling</a
+                        ><i class="fa-solid fa-heart"></i> Romance</a
                       >
                       <a href="" class="list-group-item list-group-item-action"
                         >Educational</a
@@ -191,7 +197,9 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link active hover-underline-animation" href="#"
+            <a
+              class="nav-link active hover-underline-animation"
+              href="{% url 'mainapp:contact' %}"
               >Contact us</a
             >
           </li>
@@ -205,7 +213,7 @@
     </div>
   </nav>
   {% block content2 %}{% endblock content2 %}
-  <div class="container2 mt-5 w-100">
+  <div class="container2 mt-5 w-100" id="footer">
     <footer
       class="text-white text-center text-lg-start"
       style="background-color: #23242a; width: 100%"
@@ -216,10 +224,6 @@
         <div class="row mt-4 align-items-center">
           <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-           
-
-            
-
             <ul class="fa-ul" style="margin-left: 1.65em">
               <li class="mb-3">
                 <span class="fa-li"><i class="fas fa-home"></i></span

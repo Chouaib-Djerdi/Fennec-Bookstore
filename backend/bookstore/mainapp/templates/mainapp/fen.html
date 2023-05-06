@@ -4,13 +4,12 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 col-sm-0 my-5 text-center">
-        <h1  > 
-       
-          Your favourite place <br />to  <span style="color: #fea82f">read</span>
+        <h1>
+          Your favourite place <br />to <span style="color: #fea82f">read</span>
         </h1>
         <h6>
           Visitez
-          <a href="#my-location"
+          <a href="#footer"
             >notre bibliothèque &nbsp
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +45,13 @@
             name="searched"
           />
 
-          <button class="btn btn-outline-success my-2" style="margin-left: -50px; background-color: white; border: 0;" type="submit"> <i style="
-          color: #fea82f;" class="fa-solid fa-magnifying-glass"></i></button>
+          <button
+            class="btn btn-outline-success my-2"
+            style="margin-left: -50px; background-color: white; border: 0"
+            type="submit"
+          >
+            <i style="color: #fea82f" class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </form>
       </div>
       <div class="col-lg-6 col-sm-12 my-4 d-flex justify-content-center">
@@ -150,7 +154,11 @@
             <h1 class="display-1 fw-bolder text-capitalize">
               Books Of Philosophy
             </h1>
-            <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Explore</button>
+            <button class="btn btn-primary px-4 py-2 fs-5 mt-5">
+              <a href="{% url 'mainapp:category' category='Philosophy' %}"
+                >Explore</a
+              >
+            </button>
           </div>
         </div>
         <div class="carousel-item c-item">
@@ -167,7 +175,9 @@
               data-bs-toggle="modal"
               data-bs-target="#booking-modal"
             >
-              Explore
+              <a href="{% url 'mainapp:category' category='History' %}"
+                >Explore</a
+              >
             </button>
           </div>
         </div>
@@ -185,7 +195,9 @@
               data-bs-toggle="modal"
               data-bs-target="#booking-modal"
             >
-              Explore
+              <a href="{% url 'mainapp:category' category='Science' %}"
+                >Explore</a
+              >
             </button>
           </div>
         </div>
@@ -226,7 +238,7 @@
         <a href="{% url 'mainapp:book-detail' book.id %}">
           <div class="card">
             <div class="img-container">
-              <img src="{{book.cover.url}}" alt="" />
+              <img src="{{book.coverURL}}" alt="" />
             </div>
             <div class="card-details">
               <div class="heart-container">
@@ -284,7 +296,7 @@
           <a href="{% url 'mainapp:book-detail' book.id %}">
             <div class="card">
               <div class="img-container">
-                <img src="{{book.cover.url}}" alt="" />
+                <img src="{{book.coverURL}}" alt="" />
               </div>
               <div class="card-details">
                 <div class="heart-container mx-2">
@@ -349,4 +361,42 @@
   </div>
 </section>
 
+<a href="#top" class="back-to-top"
+  ><strong><i class="fa-solid fa-arrow-up"></i></strong
+></a>
+<style>
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #fea82f; /* Orangish color */
+    color: #fff;
+    text-decoration: none;
+    display: none;
+    transition: opacity 0.3s;
+    margin: 10px;
+  }
+
+  .back-to-top:hover {
+    opacity: 0.8;
+  }
+</style>
+<script>
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  window.addEventListener("scroll", function () {
+    var backToTop = document.querySelector(".back-to-top");
+    if (window.scrollY > 200) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  });
+</script>
 {% endblock content2 %}

@@ -55,6 +55,8 @@ class Book(models.Model):
         ('Poetry','Poetry'),
         ('Romance','Romance'),
         ('Religious','Religious'),
+        ('Philosophy','Philosophy'),
+        ('Science','Science'),
     )
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=700)

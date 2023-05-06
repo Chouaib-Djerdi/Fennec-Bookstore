@@ -1,27 +1,21 @@
 function createCommentCard(comment) {
   return `
     <div class="d-flex flex-start mb-4 p-3">
-      <img
-        class="rounded-circle shadow-1-strong me-3"
-        src="http://127.0.0.1:8000/static/mainapp/images/Default-PFP.jpg"
-        alt="avatar"
-        width="65"
-        height="65"
-      />
+      
       
       <div class="card w-100">
         <div class="card-body p-4">
           <div class="">
-            <h5>${comment.user.username}</h5>
+            <h5><i class="fa-solid fa-user"></i> ${comment.user.username}</h5>
             <div class="ml-auto">
               <p class="small">${new Date(
                 comment.created_at
               ).toLocaleString()}</p>
             </div>
             <div>
-                            <p class="text-left"><span class="text-muted">${
-                              comment.rating
-                            }.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
+              <p class="text-left"><span class="text-muted">${
+                comment.rating
+              }.0</span> <span class="fa rstar fa-star star-inactive ml-3"></span> <span class="fa rstar fa-star star-inactive"></span> <span class="fa fa-star rstar star-inactive"></span> <span class="fa fa-star rstar star-inactive"></span> <span class="fa fa-star rstar star-inactive"></span></p>
             </div>
             
             <p>${comment.content}</p>
@@ -42,6 +36,17 @@ function createCommentCard(comment) {
       </div>
     </div>
   `;
+}
+
+function setStars(comment) {
+  console.log("hello")
+  console.log(document.querySelectorAll(".rstar"))
+  document.querySelectorAll(".rstar").forEach((Element, index) => {
+    if (index < comment.rating) {
+      Element.classList.remove("star-inactive");
+      Element.classList.add("star-active");
+    }
+  });
 }
 
 function fetchComments(bookId) {
@@ -76,6 +81,8 @@ function fetchComments(bookId) {
       data.forEach((comment) => {
         const commentCard = createCommentCard(comment);
         commentSection.insertAdjacentHTML("beforeend", commentCard);
+        
+        setStars(comment);
       });
     })
     .catch((error) => console.error(error));

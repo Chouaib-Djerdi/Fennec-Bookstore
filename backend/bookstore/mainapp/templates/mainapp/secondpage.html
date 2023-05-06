@@ -1,18 +1,15 @@
 {% extends 'mainapp/navbar.html' %}{% load static %} {% block extrahead %}
 <link rel="stylesheet" href="{% static 'mainapp/css/secondpage.css' %}" />
 
-
-  
 {%endblock%} {% block content2 %}
 
-<div class="container my-5" >
- 
+<div class="container my-5">
   <section class="description">
     <section class="description">
       <!-- start of the title  -->
-      <div class="booktitlep text-center py-4">
-        <h2>Harry Potter And The Chamber Of Secrets</h2>
-        <p>By <a href="">writer of the book</a></p>
+      <div class="booktitlep text-center py-1">
+        <h2>{{book.title}}</h2>
+        <p>By <a href="">{{book.author.name}}</a></p>
       </div>
       <div class="row">
         <div
@@ -21,14 +18,14 @@
           <!-- book image -->
           <div class="imgcontainer">
             <!-- class book picture  -->
-            <img src="{{book.cover.url}}" class="my-4 book-picture" alt="" />
+            <img src="{{book.coverURL}}" class="my-4 book-picture" alt="" />
           </div>
           <!-- end of book image  -->
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12">
           <div class="text">
-            <div class="booktitle my-4">
+            <div class="booktitle my-1">
               <!-- book title  -->
               <h2 class="book-title">{{book.title}}</h2>
               <!--class book writer -->
@@ -40,23 +37,37 @@
             </div>
             <!-- end of book description  -->
             <!-- book information  -->
-            <div class="aut py-4 my-4">
+            <div class="aut py-4 my-1">
               <!-- maison d'édition  -->
+              <ul class="d-flex flex-column"></ul>
               <ul class="d-flex flex-column">
                 <li class="d-flex">
                   <h6>Maison D'édition:</h6>
                   <!-- class publisher  -->
                   <p class="px-4 book-publisher">{{book.author.publisher}}</p>
                 </li>
-              </ul>
-              <!-- price  -->
-              <ul class="d-flex flex-column">
+                <li class="d-flex">
+                  <h6>Genre:</h6>
+                  <!-- class book price  -->
+                  <p class="px-4 book-price">{{book.genre}}</p>
+                </li>
+                <li class="d-flex">
+                  <h6>Number of pages:</h6>
+                  <!-- class book price  -->
+                  <p class="px-4 book-price">{{book.nbr_pages}}</p>
+                </li>
+                <li class="d-flex">
+                  <h6>Year:</h6>
+                  <!-- class book price  -->
+                  <p class="px-4 book-price">{{book.year}}</p>
+                </li>
                 <li class="d-flex">
                   <h6>Prix:</h6>
                   <!-- class book price  -->
-                  <p class="px-4 book-price">{{book.price}}</p>
+                  <p class="px-4 book-price">{{book.price}} $</p>
                 </li>
               </ul>
+
               <div class="buy text-center">
                 <button
                   class="update-cart"
@@ -66,12 +77,12 @@
                 >
                   Add to Cart
                 </button>
-                <button
-                  href="{% url 'mainapp:wishlist-add' book.id %}"
-                  class=""
-                  type="submit"
-                >
-                  Add to Wishlist
+                <button type="submit">
+                  <a
+                    href="{% url 'mainapp:wishlist-add' book.id %}"
+                    class="text-white"
+                    >Add to Wishlist</a
+                  >
                 </button>
               </div>
               <!-- end of book information  -->
@@ -106,7 +117,7 @@
               <div class="d-flex flex-start w-100">
                 <img
                   class="rounded-circle shadow-1-strong me-3"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
+                  src="{% static 'mainapp/images/Default-PFP.jpg' %}"
                   alt="avatar"
                   width="65"
                   height="65"
@@ -181,7 +192,7 @@
                     ></textarea>
                     <label for="comment-content">What is your view?</label>
                     <br />
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-warning">
                       Submit
                     </button>
                     <button
@@ -197,9 +208,7 @@
             </div>
           </div>
         </div>
-
       </div>
-      
 
       <!-- end rate  -->
       <section class="Recent">
@@ -210,7 +219,7 @@
               <a href="{% url 'mainapp:book-detail' book.id %}">
                 <div class="card">
                   <div class="img-container">
-                    <img src="{{book.cover.url}}" alt="" />
+                    <img src="{{book.coverURL}}" alt="" />
                   </div>
                   <div class="card-details">
                     <h2>{{book.title}}</h2>
@@ -224,14 +233,13 @@
           </div>
         </div>
       </section>
-      <div id="comment-list"></div>
     </section>
     <h3>See other readers ratings :</h3>
 
     <section class="comments">
       <div class="container text-dark">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-11 col-lg-9 col-xl-7">
+        <div class="row d-flex justify-content-center p-2">
+          <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12">
             <h3>Comments</h3>
 
             <div id="comment-section"></div>
@@ -240,11 +248,11 @@
             .card {
               border-radius: 5px;
               background-color: #fff;
-              padding-left: 60px;
-              padding-right: 60px;
+              padding-left: 10px;
+              padding-right: 10px;
               margin-top: 30px;
-              padding-top: 30px;
-              padding-bottom: 30px;
+              padding-top: 10px;
+              padding-bottom: 10px;
             }
 
             .rating-box {
@@ -332,7 +340,7 @@
               margin-bottom: 10px;
             }
           </style>
-          <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text-center mb-5">
             <div class="card">
               <div class="row justify-content-left d-flex">
                 <div class="col-md-4 d-flex flex-column">
@@ -400,17 +408,17 @@
                   </div>
                 </div>
               </div>
+              <div class="text-center">
+                <button
+                  type="button"
+                  class="btn btn-warning my-2 text-white"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ratingModal"
+                >
+                  Add your rating opinion
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="text-center">
-            <button
-              type="button"
-              class="btn btn-warning my-2"
-              data-bs-toggle="modal"
-              data-bs-target="#ratingModal"
-            >
-              Add your rating opinion
-            </button>
           </div>
         </div>
       </div>

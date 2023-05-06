@@ -1,44 +1,46 @@
 {% extends 'mainapp/navbar.html' %} {% load static %} {% block content2 %}
-<div class="row">
-  <h1>Books of this category : {{category}}</h1>
-  <div class="col-lg-9">
-    <div class="container-fluid">
-      <div class="row py-4">
-        {% for book in books %}
-        <div
-          class="col-lg-3 text-center col-md-4 col-sm-6 text-center col-6 text-center"
-        >
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="" class="image">
-                <img class="pic-1" src="{{book.cover.url}}" />
-              </a>
+<div class="container">
+  <div class="row">
+    <h1>Books of this category : {{category}}</h1>
+    <div class="col-lg-9">
+      <div class="container-fluid">
+        <div class="row py-4">
+          {% for book in books %}
+          <div
+            class="col-lg-3 text-center col-md-4 col-sm-6 text-center col-6 text-center"
+          >
+            <div class="product-grid">
+              <div class="product-image">
+                <a href="" class="image">
+                  <img class="pic-1" src="{{book.cover.url}}" />
+                </a>
 
-              <ul class="product-links">
-                <li>
-                  <a
-                    href="{% url 'mainapp:wishlist-add' book.id %}"
-                    data-tip="Add to Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">{{book.title}}</a></h3>
-              <div class="price">${{book.price}}</div>
-              <button
-                class="update-cart add-to-cart boton"
-                type="submit"
-                data-product="{{book.id}}"
-                data-action="add"
-              >
-                add to cart
-              </button>
+                <ul class="product-links">
+                  <li>
+                    <a
+                      href="{% url 'mainapp:wishlist-add' book.id %}"
+                      data-tip="Add to Wishlist"
+                      ><i class="fas fa-heart"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">{{book.title}}</a></h3>
+                <div class="price">${{book.price}}</div>
+                <button
+                  class="update-cart add-to-cart boton"
+                  type="submit"
+                  data-product="{{book.id}}"
+                  data-action="add"
+                >
+                  add to cart
+                </button>
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
     </div>
   </div>

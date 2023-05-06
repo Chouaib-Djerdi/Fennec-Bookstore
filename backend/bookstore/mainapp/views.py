@@ -9,6 +9,10 @@ import json
 from .utils import cookieCart,cartData,guestOrder
 from django.views.decorators.csrf import csrf_exempt
 import datetime
+from .forms import ContactForm
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 
@@ -183,3 +187,29 @@ def processOrder(request):
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
+
+def contactus(request):
+    form = ContactForm(request.POST or None)
+    alert_message = None
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+
+        # Send email
+        send_mail(
+            subject,
+            f"Name: {name}\nEmail: {email}\nMessage: {message}",
+            settings.DEFAULT_FROM_EMAIL,
+            ['djerdichouaib@gmail.com'],
+            fail_silently=False,
+        )
+
+        # Set alert message
+        alert_message = 'Thank you for your message!'
+
+        # Redirect to the same page
+        return redirect('contact')
+
+    return render(request, 'mainapp/contactus.html', {'form': form, 'alert_message': alert_message})
