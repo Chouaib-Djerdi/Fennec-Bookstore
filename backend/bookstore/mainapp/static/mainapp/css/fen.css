@@ -125,13 +125,7 @@ body {
   width: 90%;
 } */
 
-.first h1 {
-  font-size: 65px;
-  letter-spacing: 4px;
-  line-height: 6rem;
-  /* margin-top: 3.2rem; */
-  font-weight: 650;
-}
+
 
 .first form {
   width: 90%;
@@ -145,6 +139,12 @@ body {
   margin-left: -50px;
   height: 100%;
 }
+.first h1{
+  font-family: 'Prata', serif; font-size: 400%;
+  line-height: 120%;
+  font-weight: 700;}
+
+       
 
 @media only screen and (max-width: 600px) {
   .book .row .col-lg-3 a {
@@ -159,8 +159,8 @@ body {
   }
 
   .first h1 {
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 250%;
+    line-height: 50px;
   }
 
   .navbar-brand img {
@@ -178,6 +178,7 @@ body {
     width: 80%;
     display: flex;
   }
+
 }
 
 .book .row {
