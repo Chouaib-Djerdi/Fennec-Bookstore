@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from . import models
 from django import forms
 from .forms import CustomUserCreationForm
+from mainapp.models import Customer
 
 # Create your views here.
 def register(request):
@@ -13,6 +14,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            customer = Customer.objects.create(user=user)
             login(request, user)
             return redirect(reverse('mainapp:main-page'))
     else:
