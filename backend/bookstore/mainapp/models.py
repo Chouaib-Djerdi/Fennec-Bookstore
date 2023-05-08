@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator,MinValueValidator
 import os
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
+import datetime
 
 # from comment.models import Comment
 
@@ -60,9 +61,13 @@ class Book(models.Model):
     )
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=700)
+    isbn = models.CharField(max_length=13,null=True,blank=True)
     cover = models.ImageField(upload_to=get_book_cover_path,null=True,blank=True)
     genre = models.CharField(max_length=20,choices=GENRE_CHOICES,null=True)
-    year = models.IntegerField()
+    year = models.IntegerField(validators=[
+            MinValueValidator(1900),
+            MaxValueValidator(datetime.datetime.now().year)
+        ])
     nbr_pages = models.IntegerField()
     price = models.DecimalField(max_digits=15,decimal_places=2,default=00.00)
     # rating = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
