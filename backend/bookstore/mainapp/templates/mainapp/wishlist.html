@@ -25,12 +25,12 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                
+
                 {% for book in wishlist_items %}
                 <tbody>
                   <div class="tableau">
                     <tr>
-                      <td class="align-middle" >
+                      <td class="align-middle">
                         <div class="d-flex align-items-center">
                           <img
                             src="{{book.cover.url}}"
@@ -39,37 +39,49 @@
                             alt="Book"
                           />
                           <div class="flex-column ms-4" style="width: 100%">
-                            <p class="mb-2" style="font-weight: 700;
-                            font-size: 100%; 
-                            width:200px
-                            ;
-                          
-                            ">
+                            <p
+                              class="mb-2"
+                              style="
+                                font-weight: 700;
+                                font-size: 100%;
+                                width: 200px;
+                              "
+                            >
                               {{book.title}}
                             </p>
-                            <p class="mb-0" style="font-weight: 700;
-                            font-size: 100%;                       
-                             width:200px         ;  ">
+                            <p
+                              class="mb-0"
+                              style="
+                                font-weight: 700;
+                                font-size: 100%;
+                                width: 200px;
+                              "
+                            >
                               {{book.author.name}}
                             </p>
                           </div>
                         </div>
                       </td>
-                      
-                 
 
-                      <td  class="align-middle" >
-                        <div class="text" style="margin-left: 120px;"> <b 
-                        
-                        
-                          ><span>Price</span></b>
+                      <td class="align-middle">
+                        <div class="text" style="margin-left: 120px">
+                          <b><span>Price</span></b>
                           <p class="mb-0" style="font-weight: 500">
                             {{book.price}}
-                          </p></div>
-                        
+                          </p>
+                        </div>
                       </td>
                       <td class="align-middle">
-                        <div class="add"><button>Move To Cart</button></div>
+                        <div class="add">
+                          <button
+                            class="update-cart boton"
+                            type="submit"
+                            data-product="{{book.id}}"
+                            data-action="add"
+                          >
+                            Move To Cart
+                          </button>
+                        </div>
                       </td>
 
                       <td class="align-middle">
@@ -118,15 +130,16 @@
             </div>
           </div>
           {% else %}
-          <h1 class="text-center" style="font-weight: 700;">Oops! Your Wishlist is empty</h1>
-          <div class="heartwishlist text-center " >
-            <i style="font-size: 130px; 
-            margin-top: 70px;
-            color: red;
-            " class="fa-solid fa-heart-crack fa-bounce "></i>
+          <h1 class="text-center" style="font-weight: 700">
+            Oops! Your Wishlist is empty
+          </h1>
+          <div class="heartwishlist text-center">
+            <i
+              style="font-size: 130px; margin-top: 70px; color: red"
+              class="fa-solid fa-heart-crack fa-bounce"
+            ></i>
           </div>
-          
-        
+
           {% endif %}
         </div>
       </div>
