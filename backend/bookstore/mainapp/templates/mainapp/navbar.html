@@ -153,27 +153,41 @@
                 <div class="row my-4">
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
-                      <a href="" class="list-group-item list-group-item-action">
+                      <a
+                        href="{% url 'mainapp:category' category='Novel' %}"
+                        class="list-group-item list-group-item-action"
+                        ><i class="fa-solid fa-wand-magic-sparkles"></i>
                         Novels
                       </a>
-                      <a href="" class="list-group-item list-group-item-action"
+                      <a
+                        href="{% url 'mainapp:category' category='History' %}"
+                        class="list-group-item list-group-item-action"
                         ><i class="fa-solid fa-map"></i> History</a
                       >
-                      <a href="" class="list-group-item list-group-item-action"
-                        ><i class="fa-brands fa-searchengin"></i> Mystery</a
+                      <a
+                        href="{% url 'mainapp:category' category='Fiction' %}"
+                        class="list-group-item list-group-item-action"
+                        ><i class="fa-brands fa-searchengin"></i> Fiction</a
                       >
                     </div>
                   </div>
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
-                      <a href="" class="list-group-item list-group-item-action">
+                      <a
+                        href="{% url 'mainapp:category' category='Self-help' %}"
+                        class="list-group-item list-group-item-action"
+                      >
                         <i class="fa-solid fa-hammer"></i> Self-Help
                       </a>
-                      <a href="" class="list-group-item list-group-item-action"
+                      <a
+                        href="{% url 'mainapp:category' category='Religion' %}"
+                        class="list-group-item list-group-item-action"
                         ><i class="fa-solid fa-star-and-crescent"></i>
                         Religion</a
                       >
-                      <a href="" class="list-group-item list-group-item-action"
+                      <a
+                        href="{% url 'mainapp:category' category='Biography' %}"
+                        class="list-group-item list-group-item-action"
                         ><i class="fa-solid fa-book"></i> Biography</a
                       >
                     </div>
@@ -181,14 +195,15 @@
 
                   <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
                     <div class="list-group list-group-flush">
-                      <a href="" class="list-group-item list-group-item-action"
+                      <a
+                        href="{% url 'mainapp:category' category='Philosophy' %}"
+                        class="list-group-item list-group-item-action"
                         ><i class="fa-solid fa-brain"></i> Philosophy</a
                       >
-                      <a href="" class="list-group-item list-group-item-action"
+                      <a
+                        href="{% url 'mainapp:category' category='Romance' %}"
+                        class="list-group-item list-group-item-action"
                         ><i class="fa-solid fa-heart"></i> Romance</a
-                      >
-                      <a href="" class="list-group-item list-group-item-action"
-                        >Educational</a
                       >
                     </div>
                   </div>

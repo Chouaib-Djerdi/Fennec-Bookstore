@@ -13,6 +13,8 @@ from .forms import ContactForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from api.models import Comment
+from django.db.models import Sum
 # Create your views here.
 
 
@@ -213,3 +215,6 @@ def contactus(request):
         return redirect('contact')
 
     return render(request, 'mainapp/contactus.html', {'form': form, 'alert_message': alert_message})
+
+
+
