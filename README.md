@@ -16,7 +16,7 @@ An innovative e-commerce bookstore website 🚀 called Fennec Bookstore 🎉, si
 
 ## 📷 Screenshots
 
-<img src="https://github.com/Chouaib-Djerdi/Fennec-Bookstore/assets/116681645/310bd0fd-016b-42f2-900d-db5ba68cc43b" alt="Clean Modern App Portfolio Mockup Presentation" width="700">
+<img src="https://media.licdn.com/dms/image/D4E22AQH10Um8T2E17g/feedshare-shrink_2048_1536/0/1686335183284?e=1695859200&v=beta&t=r0tYqgriCiWF3gkl0ejmwaRHUx6oDPC_QdHtUzK_HPg" alt="" width="700">
 <img src="https://media.licdn.com/dms/image/D4E22AQHhNaKpNgHUxw/feedshare-shrink_2048_1536/0/1686335189105?e=1695859200&v=beta&t=xqEmm8J_OHp15rcg5bzt_5qWgBjo049U1XURBkBUThk" alt="" width="700">
 <img src="https://media.licdn.com/dms/image/D4E22AQGZSTL3zHduPA/feedshare-shrink_2048_1536/0/1686335188857?e=1695859200&v=beta&t=ddADJafZDnxUkMiKqAvHnsJFRfzaRF7dYgsCVUUazkU" alt="" width="700">
 <img src="https://media.licdn.com/dms/image/D4E22AQGP2MNlMQg5RA/feedshare-shrink_2048_1536/0/1686335187972?e=1695859200&v=beta&t=d_gzL6lQddcRZyBaCxHRmpWW_8qXGmmrv0uEefVBKk0" alt="" width="700">
